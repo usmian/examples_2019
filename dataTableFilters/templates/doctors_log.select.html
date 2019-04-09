@@ -1,0 +1,28 @@
+<!-- JQUERY UI -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="{$sBase}/js/doctorsLogDashboard.js"></script>
+<style>
+    .ui-datepicker-calendar {ldelim}
+    display: none;
+    {rdelim}
+</style>
+
+<div class="margin" style="background: #fff; padding: 15px; border: 1px solid #ccc; border-radius: 10px;">
+    <form id="log_form">
+        <label>
+            <input id="js-cm-report_date" type="text" name="date_to" value="{$sDate}" placeholder="Месяц.Год" readonly="readonly" />
+            <input id="js-cm-report_date_from" type="text" name="date_from" placeholder="Месяц.Год" hidden />
+        </label>
+        <label>Клиника
+            <select name="id_clinic" id="cm-select-clinic">
+                <option value="">[ Не выбрано ]</option>
+                {foreach from=$aAllClinics key=id item=sClinic}
+                <option value="{$sClinic->id}">{$sClinic->title}</option>
+                {/foreach}
+            </select>
+        </label>
+        <button type="submit" class="btn btn-small" style="margin-left: 10px;">Выбрать</button>
+    </form>
+</div>

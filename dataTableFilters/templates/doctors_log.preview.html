@@ -1,0 +1,78 @@
+<div id="generator_block" class="b-middle" style="top: 140px; border: 1px solid #ccc; border-radius: 10px;">
+    <div class="scroll" style="height: 100%;">
+        <div class="margin">
+            <div class="margin" id="for_generator_table">
+
+                <table id="log-ajax-table" class="display cell-border">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot></tfoot>
+                    </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="salary-modal" style="display: none;">
+    <div class="modal-header">
+        <h1>Рекомендации врача</h1>
+    </div>
+    <div class="scroll" style="position:relative; overflow: auto; max-height:70vh;" >
+        <div class="b-table" style="margin-top: 1em;"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="b-form__bttn b-form__bttn_red close-modal" data-dismiss="modal">Закрыть</button>
+    </div>
+</div>
+
+{literal}
+<script type="text/template" id="tpl-table-salary-one">
+    <div class="margin">
+        <table id="salary_table_one" class="cell-border hover">
+            <thead>
+            <tr>
+                <th width="5%">Дата</th>
+                <th width="25%">Клиника</th>
+                <th width="5%">Пациент</th>
+                <th width="10%">Рекомендация</th>
+                <th width="5%">Врач</th>
+                <th width="5%">Код услуги</th>
+                <th width="25%">Наименование услуги</th>
+                <th width="5%">Стоимость</th>
+                <th width="5%">Оплата</th>
+                <th width="5%">Условия</th>
+                <th width="5%">ЗП</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(data, function(item, i) { %>
+            <tr>
+                <td style="text-align: center"><%= item.date_rus %></td>
+                <td style="text-align: center"><%= item.clinic_title.replace(/"/g, '&quot;') %></td>
+                <td style="text-align: center"><%= item.patient_lastname + '.' + item.patient_firstname.substring(1, 0)
+                    + '.' + item.patient_middlename.substring(1, 0) %>
+                </td>
+                <td style="text-align: center"> <% if(item.id_doctor_assigned>0){ %>
+                    <%= item.assigned_lastname + '.' + item.assigned_firstname.substring(1, 0) + '.' + item.assigned_middlename.substring(1, 0) %>
+                    <% }else{ %>
+                    Без рекомендации
+                    <% } %>
+                </td>
+                <td style="text-align: center"> <%= item.doctor_lastname + '.' + item.doctor_firstname.substring(1, 0)
+                    + '.' + item.doctor_middlename.substring(1, 0) %></td>
+                <td style="text-align: center"><%= item.code %></td>
+                <td style="text-align: center"><%= item.title %></td>
+                <td style="text-align: center"><%= item.price %></td>
+                <td style="text-align: center"><%= item.paid %></td>
+                <td style="text-align: center"><%= item.cond %></td>
+                <td style="text-align: center"><%= item.salary %></td>
+            </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    </div>
+</script>
+{/literal}
