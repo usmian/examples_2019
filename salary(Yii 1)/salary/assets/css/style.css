@@ -1,0 +1,77 @@
+.discount {
+    width: 30px;
+    color: black;
+    font-weight: normal;
+    font-family: "ProximaNova", Arial, sans-serif;
+}
+
+.discount-abs {
+    width: 70px;
+    height: 40%;
+    display: inline;
+}
+
+.count {
+    width: 20px;
+}
+
+.document-info-block {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: normal;
+    text-transform: none;
+    vertical-align: top;
+    font-size: 13px;
+    font-family: "ProximaNova", Arial, sans-serif;
+    color: #aaa;
+}
+
+.limit-text {
+    font-weight: bold;
+}
+
+.paid-text {
+    text-align: center;
+}
+
+.buttons-block {
+    text-align: right;
+}
+
+.report-sum {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.report-sum:hover {
+    cursor: pointer;
+}
+
+#modal-detailing .modal-dialog {
+    width: 1100px;
+}
+
+.all-recommendation-save,
+.all-comission-save {
+    position: absolute;
+    margin-left: 10px;
+}
+.closed-report,
+.closed-report:hover {
+    color: #777;
+}
+.status-1 {
+    color: black;
+    font-weight: bold;
+}
+.salary-service-title {
+    display: inline-block;
+    width: 300px;
+    white-space: normal;
+}
+
+.user-info-wrap {
+    margin: -10px -15px 10px -15px;
+    padding: 0 15px;
+    background: #f8f8f8
+}

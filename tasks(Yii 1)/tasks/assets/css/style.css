@@ -1,0 +1,83 @@
+
+.not-viewed td {
+    background: #d9e3fc;
+}
+
+.status-4 td, .status-4 .title a {
+    color: #999;
+}
+
+.status-1 td, .status-1 {
+    color:black;
+}
+
+.status-2 td, .status-2 {
+    color:black;
+}
+
+.title a{
+    color:#3FAECA;
+}
+
+.status-6 td, .status-6 .title a {
+    color: #bbb;
+}
+
+.status-6 .title a {
+    text-decoration: line-through;
+}
+
+.status-5 td, .status-5 .title a {
+    color: #7c1515;
+}
+
+.status-1 td:nth-child(2){
+    color:#90bc38;
+}
+
+
+
+.status-hour {
+    font-weight: bold;
+}
+
+.status-expired {
+    font-weight: bold;
+    color: red;
+}
+
+.task-history .callout {
+    padding: 8px 10px;
+    margin: 10px 0;
+}
+
+.task-history .callout p {
+    margin: 0;
+}
+
+.task-history .time {
+    display: block;
+    margin: 0 7px 4px 0;
+    font-size: 10px;
+    color: #aaa;
+}
+
+.task-history .user,
+.task-history .field {
+    font-style: italic;
+}
+
+.task-history .prev-value {
+    margin-left: 7px;
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+.task-history .value {
+    margin-left: 7px;
+}
+
+.task-history-content {
+    max-height: 234px;
+    overflow: hidden;
+}
