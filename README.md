@@ -2,6 +2,21 @@
 
 Краткое описание примеров
 
+symfonyVue - в папке vue лежит для примера один простой компонент(security с чекбоксами для выставления прав доступа в зависимости от роли) 
+
+vue:
+    components/App.vue - корневой компонент приложения
+    components/Security.vue - корневой компонент модуля security
+    components/security/ - компоненты модуля
+
+    router/routes.js - использую router
+    store - использую vuex
+
+    app.js - точка входа
+
+symfony:
+    Controller, Entities, Repositories для манипуляций с модулем Security
+
 UdsGameIntegration - интеграция с ситемой лояльности UdsGame
   Задача: интеграция с системой лояльности UdsGame
 
