@@ -109,7 +109,8 @@ export default {
                 icon: 'fa fa-bar-chart-o'
             }];
             for (let key in granted) {
-                let idx = state.items.findIndex(x => x.name == granted[key]);
+                let idx = state.items.findIndex(x = > x.name == granted[key]
+            );
                 grantedMenu.push(state.items[idx]);
             }
 
@@ -123,7 +124,9 @@ export default {
             state.pending = false;
         },
         ['SWITCHED_ROLE'](state, payload) {
-            let module = state.accessList.findIndex(x => x.id === payload.id);
+            let module = state.accessList.findIndex(x = > x.id === payload.id
+        )
+            ;
             state.accessList[module] = payload;
             state.pending = false;
         },
@@ -138,11 +141,13 @@ export default {
 
             let path = payload.path + 'api/init_app';
             axios.get(path)
-                .then(response => {
-                    store.commit('INIT_APP', response.data)
-                }).catch(e => {
+                .then(response = > {
+                store.commit('INIT_APP', response.data)
+        }).
+            catch(e = > {
                 console.log(e)
-            });
+        })
+            ;
         },
         updateRole(store, payload) {
             store.commit('START_PENDING');
@@ -150,21 +155,24 @@ export default {
             axios.post(path, {
                 payload
             })
-                .then(response => {
-
-                    store.commit('SWITCHED_ROLE', response.data)
-                }).catch(e => {
+                .then(response = > {
+                store.commit('SWITCHED_ROLE', response.data)
+        }).
+            catch(e = > {
                 console.log(e)
-            });
+        })
+            ;
         },
         ['LOAD_ACCESS_MODULES'](store) {
             store.commit('START_PENDING');
             axios.get('/api/security/get_access_modules')
-                .then(response => {
-                    store.commit('INIT_ACCESS', response.data)
-                }).catch(e => {
+                .then(response = > {
+                store.commit('INIT_ACCESS', response.data)
+        }).
+            catch(e = > {
                 console.log(e)
-            });
+        })
+            ;
         }
     }
 };
