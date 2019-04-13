@@ -53,7 +53,6 @@ class ApiSecurityController extends AbstractController
         } else {
             foreach ($access as $a) {
                 $roles = $a['roles'];
-
                 foreach ($roles as $r) {
                     if (in_array($r['name'], $userRoles)) {
                         array_push($grantedList, $a['name']);

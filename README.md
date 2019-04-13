@@ -6,16 +6,20 @@ symfonyVue - в папке vue лежит для примера один про�
 
 vue:
     components/App.vue - корневой компонент приложения
+    
     components/Security.vue - корневой компонент модуля security
     components/security/ - компоненты модуля
+    
+    components/Вirectories.vue -корневой компонент модуля tags
+    components/directories/ - компоненты модуля tags
 
     router/routes.js - использую router
-    store - использую vuex
+    store - использую vuex, разделенный на модули
 
     app.js - точка входа
 
 symfony:
-    Controller, Entities, Repositories для манипуляций с модулем Security
+    Controller, Entities, Repositories для манипуляций с модулми Security, Tags
 
 UdsGameIntegration - интеграция с ситемой лояльности UdsGame
   Задача: интеграция с системой лояльности UdsGame
