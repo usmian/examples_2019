@@ -1,4 +1,5 @@
 <?php
+namespace Dogs\classes;
 
 class HuntingBehavior implements HuntingInterface
 {

@@ -6,6 +6,8 @@
  * Date: 19.10.2017
  *
  */
+namespace Dogs\classes;
+
 class DogFactory
 {
     public static function create($type, $command)

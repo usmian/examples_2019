@@ -3,13 +3,23 @@
 
 <head>
     <meta charset="utf-8"/>
+    <link href="static/style.css" rel="stylesheet">
     <title>Песики</title>
 </head>
 <body>
+<form action="/index.php">
+    <input type="text" name="type" placeholder="type">
+    <input type="text" name="command" placeholder="command">
+    <input type="submit" value="check">
+</form>
+</body>
 
-<?php
-//Strategies
+<?
+require_once 'vendor/autoload.php';
+use Dogs\classes\DogFactory;
+
 if (isset($_GET['command']) && isset($_GET['type'])) {
+
     //get parameters
     $command = trim(strtolower($_GET['command']));
     $type = trim(strtolower($_GET['type']));
@@ -30,4 +40,5 @@ if (isset($_GET['command']) && isset($_GET['type'])) {
 };
 
 ?>
-</body>
+<script src="static/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="static/js/main.js" type="text/javascript"></script>

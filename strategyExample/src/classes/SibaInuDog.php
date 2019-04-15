@@ -6,7 +6,9 @@
  * Date: 19.10.2017
  *
  */
-interface WoofBehaviorInterface
+namespace Dogs\classes;
+
+class SibaInuDog extends Dog
 {
-     public function woof();
+
 }
