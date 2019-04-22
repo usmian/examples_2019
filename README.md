@@ -10,7 +10,7 @@ vue:
     components/Security.vue - корневой компонент модуля security
     components/security/ - компоненты модуля
     
-    components/Вirectories.vue -корневой компонент модуля tags
+    components/Directories.vue -корневой компонент модуля tags
     components/directories/ - компоненты модуля tags
 
     router/routes.js - использую router
