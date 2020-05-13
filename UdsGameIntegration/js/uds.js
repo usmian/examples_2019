@@ -6,7 +6,7 @@ let uds = (function () {
         patientID = null;
 
     /**
-     *
+     * инициализация
      */
     function init() {
         bind();
@@ -88,7 +88,7 @@ let uds = (function () {
                     break;
                 case 'CHARGE_SCORES':
                     scores.removeAttr('disabled');
-                    //$('#info_uds').html('<div>Невозможно применить скидку. В настройках компании - накопление баллов!</div>');
+                    $('#info_uds').html('<div>Невозможно применить скидку. В настройках компании - накопление баллов!</div>');
                     break;
             }
 
@@ -116,25 +116,22 @@ let uds = (function () {
                         cash: $('#calculated-visit_uds').val(),
                         code: $('#modal_uds_code').val()
                     });
-
                 });
-
         }
 
-        //
         //
         function evaluateSumVisit(scores, sum) {
             $('#modal_uds_scores').val(parseInt(scores));
             return sum - parseInt(scores);
         }
 
+        //
         function evaluateMaxScore(scores, maxDiscount) {
             return (scores >= maxDiscount) ? maxDiscount : scores;
         }
 
-
+        //
         function checkServicesAjax(data) {
-
                 apiUds.checkServices(data).success(function(response){
                     if (!response) {
                         alert('Уже есть скидки либо оплаченные услуги')
@@ -149,9 +146,8 @@ let uds = (function () {
                 });
         }
 
-
+        // отправляем уникальный код для получения информации о пациенте и заодно компании
         function sendCodeAjax(data) {
-
             apiUds.sendCode(data).success(function(response){
                 if (response.patient != 'not_found') {
                     patientInfo = response.patient;
@@ -173,7 +169,7 @@ let uds = (function () {
                 $('.loading2').hide();
                 $('#uds-game-view').modal('hide');
                 if (response.error) {
-                    alert(response.error)
+                    alert(response.error);
                 } else {
                     activateStepPurchase(response);
                 }
@@ -184,8 +180,8 @@ let uds = (function () {
                 });
         }
 
-
         function activateStepPurchase(response) {
+            // Кидаем событие в дашборд для обновления ценников услуг
             $(document).trigger({
                 type: 'uds-purchase_event',
                 visit_id: response.visit_id,
@@ -195,12 +191,9 @@ let uds = (function () {
                 percent: response.percent
             });
         };
-
-
     }
 
-
-
+    // откатить транзакцию
     function revertServiceAjax(unique_key) {
 
                 jQuery.ajax({
@@ -214,18 +207,22 @@ let uds = (function () {
                 });
     }
 
+    // профиль пациенты
     function getPatientInfo() {
         return patientInfo;
     }
 
+    // профиль компании
     function getCompanyInfo() {
         return companyInfo;
     }
 
+    // происходит инициализация при загрузке
     $(document).ready(function () {
         init();
     });
 
+    // Доступные извне методы
     return {
         patient: () => {
             return getPatientInfo();

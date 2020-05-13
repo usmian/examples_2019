@@ -1,18 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 13.02.2019
- * Time: 14:07
- */
 
 namespace UdsGame\Classes\api;
-
 
 use UdsGame\Contracts\Request as IRequest;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
+/**
+ * Class UdsRequest
+ *
+ * Request UdsGame
+ *
+ * @package UdsGame\Classes\api
+ * @author usikov.m usmian@yandex.ru
+ */
 class UdsRequest implements IRequest
 {
     const URL_CUSTOMER = 'https://udsgame.com/v1/partner/customer';
@@ -101,8 +102,6 @@ class UdsRequest implements IRequest
             )
         );
 
-
-
         if (!empty($data) && $method == 'GET') {
             $this->url .= '?' . $data;
         }
@@ -110,11 +109,9 @@ class UdsRequest implements IRequest
         return $opts;
     }
 
-
     private function responsePost($data)
     {
         if (!empty($data)) {
-            //$opts['http']['content']=$data;
 
                 $headers = [
                     "Accept: application/json",
@@ -159,6 +156,4 @@ class UdsRequest implements IRequest
         };
         return json_decode($result);
     }
-
-
 }

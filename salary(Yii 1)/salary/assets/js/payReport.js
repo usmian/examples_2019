@@ -13,7 +13,6 @@ var payReport = (function () {
      *
      */
     function bind() {
-
         $(document).on('click', '.show-report-details', function () {
             getDetailing($(this));
         });

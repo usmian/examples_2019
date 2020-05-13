@@ -1,18 +1,30 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 13.02.2019
- * Time: 14:33
- */
 
 namespace UdsGame\Classes\api;
 
-
+/**
+ * Class UdsClient
+ *
+ * Клиент для работы с UdsGame
+ *
+ * @package UdsGame\Classes\api
+ * @author usikov.m usmian@yandex.ru
+ */
 class UdsClient
 {
-    const AZ_CHILD_CASHIER = 'child_cashier';
+    /**
+     * @const 1-я клиника
+     */
     const AZ_MAIN_CASHIER = 'main_cashier';
+
+    /**
+     * @const 2-я клиника
+     */
+    const AZ_CHILD_CASHIER = 'child_cashier';
+
+    /**
+     * @const московская клиника
+     */
     const AZ_MOSCOW_CASHIER = 'moscow_cashier';
 
     private $apiKey;
@@ -36,12 +48,14 @@ class UdsClient
                 $this->postRevert($params);
                 break;
             default:
-                throw new \Exception('Error message');
+                throw new \Exception('Неверное наименование запроса: ' . $action);
         }
     }
 
 
     /**
+     * Получить экземпляр клиента
+     *
      * @param $apiKey
      * @param $action
      * @param null $params
@@ -54,6 +68,8 @@ class UdsClient
     }
 
     /**
+     * тело ответа
+     *
      * @return mixed
      */
     public function getResponse()
@@ -101,13 +117,8 @@ class UdsClient
      */
     private function postPurchase($params)
     {
-     /*   $params = http_build_query([
-            'key' => $params['key']
-        ]);*/
-
         $response = (new UdsRequest($this->apiKey))
             ->send('purchase', 'POST', $params);
-
         $this->response = $response;
     }
 
@@ -117,10 +128,8 @@ class UdsClient
      */
     private function postRevert($params)
     {
-
         $response = (new UdsRequest($this->apiKey))
             ->send('revert', 'POST', $params);
-
         $this->response = $response;
     }
 }
