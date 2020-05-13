@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 25.09.2018
- * Time: 21:40
+ * Абстрактный класс табличной модели
  */
+
 namespace DataTableFilters\Classes;
 
 abstract class SearchModel
@@ -21,10 +19,11 @@ abstract class SearchModel
      */
     protected $sql;
     protected $draw;
-    protected static $filters =[];
+    protected static $filters = [];
 
     ## в этой функции пишем запрос к бд
-    abstract protected function executeQuery( $sJoin, $sWhere, $iLimit, $iOffset, $params );
+    abstract protected function executeQuery($sJoin, $sWhere, $iLimit, $iOffset, $params);
+
     ## если необходимо преобразовываем полученные данные
     abstract protected function mapData(Array $data);
 
@@ -55,8 +54,8 @@ abstract class SearchModel
             }
 
 
-            $condition ='';
-            $condition.= $this->prepareCondition($condition,$key);
+            $condition = '';
+            $condition .= $this->prepareCondition($condition, $key);
 
             $condition .= $exp;
 
@@ -64,8 +63,8 @@ abstract class SearchModel
                 ? $this->{static::$filters[$key]['callback']}($data)
                 : $data;
 
-            $data = !empty(static::$filters[$key]['quotes']) ? '\''.$data.'\'' : $data;
-            $condition .= ($data=='on') ? 1 : $data;
+            $data = !empty(static::$filters[$key]['quotes']) ? '\'' . $data . '\'' : $data;
+            $condition .= ($data == 'on') ? 1 : $data;
 
             $sWhere .= $condition;
         }
@@ -73,11 +72,14 @@ abstract class SearchModel
     }
 
     /**
+     * Подготавливаем запрос
+     *
      * @param $condition
      * @param $key
      * @return string
      */
-    private function prepareCondition($condition, $key){
+    private function prepareCondition($condition, $key)
+    {
 
         $condition .= ' AND ';
         $callback = !empty(static::$filters[$key]['callback_sql']) ? true : false;
@@ -88,18 +90,20 @@ abstract class SearchModel
         $condition .= !empty(static::$filters[$key]['transform'])
             ? static::$filters[$key]['transform']
             : $key;
-        $condition.= $callback ? static::$filters[$key]['sql_end'] : '';
+        $condition .= $callback ? static::$filters[$key]['sql_end'] : '';
         return $condition;
     }
 
     /**
+     * Формат даты
+     *
      * @param $date
      * @return string
      */
-    private function formatDateYearMonth($date){
-
-           $new = (\DateTime::createFromFormat('m.Y', $date));
-           $result = $new->format('Y-m');
-           return $result;
+    private function formatDateYearMonth($date)
+    {
+        $new = (\DateTime::createFromFormat('m.Y', $date));
+        $result = $new->format('Y-m');
+        return $result;
     }
 }

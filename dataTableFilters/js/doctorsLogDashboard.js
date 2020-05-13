@@ -113,17 +113,16 @@ var doctors_log = (function ($columns) {
                 },
                 footerCallback: function (row, data, start, end, display) {
                     var api = this.api();
-                    nb_cols = api.columns().nodes().length;
+                    var nbCols = api.columns().nodes().length;
 
                     var j = 3;
-                    while (j < nb_cols) {
+                    while (j < nbCols) {
                         var pageTotal = api
                             .column(j, {page: 'current'})
                             .data()
                             .reduce(function (a, b) {
                                 return Number(a) + Number(b);
                             }, 0);
-                        console.log($(api.column(j)));
 
                         $(api.column(j).footer()).html(pageTotal);
                         j++;
@@ -187,7 +186,7 @@ var doctors_log = (function ($columns) {
 
 
         function renderModal(that) {
-            var doctor_id = that.attr('data-doctor_id'),
+            var doctorId = that.attr('data-doctor_id'),
                 content = $('.b-payment_list'),
                 table = $('#salary_table_one'),
                 //
@@ -199,7 +198,7 @@ var doctors_log = (function ($columns) {
                 url: '/ajax/getDoctorSalary.php',
                 type: "POST",
                 dataType: "html",
-                data: 'iDoctorID=' + doctor_id + '&' + dates,
+                data: 'iDoctorID=' + doctorId + '&' + dates,
                 success: function (response) {
                     var res = JSON.parse(response);
                     var salary = {

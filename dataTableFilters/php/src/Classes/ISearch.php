@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 20.09.2018
- * Time: 22:07
+ * Интерфейс табличной модели
  */
 namespace DataTableFilters\Classes;
 

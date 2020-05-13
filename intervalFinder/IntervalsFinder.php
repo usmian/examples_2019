@@ -227,6 +227,8 @@ class IntervalsFinder
     }
 
     /**
+     * сотрировка перерывов в расписании
+     *
      * @param int $doctorId
      * @param string $date
      * @return array|\stdClass[]

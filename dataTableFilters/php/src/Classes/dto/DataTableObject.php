@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 26.09.2018
- * Time: 0:29
+ * ДТО для дататэйбл
  */
+
 
 namespace DataTableFilters\Classes\dto;
 

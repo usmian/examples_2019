@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vladimir
- * Date: 12.10.2018
- * Time: 16:22
- */
 
 namespace DataTableFilters\modules\dashboard;
 
@@ -41,7 +35,7 @@ class Log3SearchModel extends SearchModel implements ISearch
 
 
     /**
-     * Log3SearchModel constructor.
+     * LogSearchModel constructor.
      * @param $sql \MySQL
      * @param $draw
      */
@@ -67,6 +61,7 @@ class Log3SearchModel extends SearchModel implements ISearch
     }
 
     /**
+     *
      * @param string $sJoin
      * @param string $sWhere
      * @param $iLimit
@@ -239,6 +234,8 @@ class Log3SearchModel extends SearchModel implements ISearch
     }
 
     /**
+     * Возвращает массив дат из интервала
+     *
      * @param $aAssocData
      * @return array
      */

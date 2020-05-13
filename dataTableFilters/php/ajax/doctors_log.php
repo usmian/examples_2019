@@ -1,11 +1,5 @@
 <?php
 
-/**
- * ajax
- * @author starassov
- * @copyright 2014
- */
-
 session_start();
 
 // -----------------------------------------------------------------------------
@@ -48,7 +42,7 @@ try {
     $dtObject->limit = getRequestToDB('length', 'number', true);
     $dtObject->offset = getRequestToDB('start', 'number', true);
 
-    $oFilter = new FilterService(new Log3SearchModel($sql, $dtObject->draw, 1));
+    $oFilter = new FilterService(new LogSearchModel($sql, $dtObject->draw, 1));
     $dataCurrent = $oFilter->getData($aAssocData, $dtObject);
     $oFilterPrev = new FilterService(new Log3SearchModel($sql, $dtObject->draw, 2));
     $dataPrev = $oFilterPrev->getData($aAssocData, $dtObject);

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Усиков
- * Date: 12.10.2018
- * Time: 23:16
+ * ДТО для резльтата
  */
 
 namespace DataTableFilters\Classes\dto;
