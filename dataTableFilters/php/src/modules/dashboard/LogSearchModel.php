@@ -237,9 +237,9 @@ class Log3SearchModel extends SearchModel implements ISearch
      * Возвращает массив дат из интервала
      *
      * @param $aAssocData
-     * @return array
+     * @return string[]
      */
-    private function getDates($aAssocData)
+    private function getDates($aAssocData): array
     {
         $from = new \DateTime($aAssocData['date_from']);
         $to = new \DateTime($aAssocData['date_to']);
@@ -249,6 +249,7 @@ class Log3SearchModel extends SearchModel implements ISearch
         ##DatePeriod - объект с набором дат с определенным интервалом
         $period = new \DatePeriod($from, new \DateInterval('P1D'), $to);
 
+        ##DatePeriod - Набор дат для интервала например с 1.02 до 2.03 вернет[2020-02-01 .. все даты по порядку до 2020-03-02]
         $arrayOfDates = array_map(
             function ($item) {
                 /**

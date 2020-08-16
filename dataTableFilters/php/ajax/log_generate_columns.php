@@ -4,6 +4,8 @@
  * ajax
  * @author starassov
  * @copyright 2014
+ *
+ * Общий каркас и наименования переменных - это местный codestyle))
  */
 
 session_start();
@@ -20,7 +22,7 @@ require_once INT_DIR . DS . 'DBconn.class.php';
 
 
 try {
-    //filters applied to data table
+    ## filters applied to data table
     $aAssocData=$_POST;
 
     $commonColumns = [
@@ -33,8 +35,8 @@ try {
     $to = new \DateTime($aAssocData['date_to']);
     $to = $to->modify('+1 day');
 
-    ##DateInterval('P1D') - интервал 1 день
-    ##DatePeriod - объект с набором дат с определенным интервалом
+    ## DateInterval('P1D') - интервал 1 день
+    ## DatePeriod - объект с набором дат с определенным интервалом
     $period = new \DatePeriod($from, new \DateInterval('P1D'), $to);
 
     $arrayOfDates = array_map(

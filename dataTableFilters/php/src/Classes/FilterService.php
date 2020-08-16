@@ -28,7 +28,7 @@ class FilterService
      * @param DataTableObject $dtObject
      * @return mixed
      */
-    public function getData($aAssocData, DataTableObject $dtObject)
+    public function getData(array $aAssocData, DataTableObject $dtObject)
     {
         /** фильтр от пустых значений */
         $aAssocData = array_filter($aAssocData, function ($mValue) {

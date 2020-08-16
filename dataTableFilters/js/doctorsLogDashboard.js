@@ -2,19 +2,19 @@ $(document).ready(function () {
 
     var start = new Date();
 
-    var s = (start.getFullYear()) + "-" + ("0" + (start.getMonth() + 1)).slice(-2) + "-" + ("0" + (start.getDate() - 1)).slice(-2);
+    var startDate = (start.getFullYear()) + "-" + ("0" + (start.getMonth() + 1)).slice(-2) + "-" + ("0" + (start.getDate() - 1)).slice(-2);
 
 
     var end = new Date();
-    var e = (end.getFullYear()) + "-" + ("0" + (end.getMonth() + 1)).slice(-2) + "-" + ("0" + end.getDate()).slice(-2);
+    var endDate = (end.getFullYear()) + "-" + ("0" + (end.getMonth() + 1)).slice(-2) + "-" + ("0" + end.getDate()).slice(-2);
 
     doctors_log(
         [
             {title: "id", data: "id", visible: false},
             {title: "Клиника", data: "title", width: "15%"},
             {title: "ФИО", data: "doctor_fio", width: "15%"},
-            {title: s, data: s},
-            {title: e, data: e}
+            {title: startDate, data: startDate},
+            {title: endDate, data: endDate}
         ]
     ).init();
 });
