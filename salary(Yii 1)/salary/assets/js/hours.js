@@ -135,7 +135,5 @@ var salaryHours = (function() {
 
     //
     return {
-
     };
-
 })();

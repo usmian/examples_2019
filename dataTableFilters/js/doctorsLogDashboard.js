@@ -8,7 +8,7 @@ $(document).ready(function () {
     var end = new Date();
     var endDate = (end.getFullYear()) + "-" + ("0" + (end.getMonth() + 1)).slice(-2) + "-" + ("0" + end.getDate()).slice(-2);
 
-    doctors_log(
+    doctorsLog(
         [
             {title: "id", data: "id", visible: false},
             {title: "Клиника", data: "title", width: "15%"},
@@ -19,7 +19,7 @@ $(document).ready(function () {
     ).init();
 });
 
-var doctors_log = (function ($columns) {
+let doctorsLog = (function ($columns) {
 
         /**
          * ПЕРЕМЕННЫЕ
@@ -33,34 +33,17 @@ var doctors_log = (function ($columns) {
         var $date_from = $('#js-cm-report_date_from');
         var $date_to = $('#js-cm-report_date_to');
 
-        var init_plugins = function () {
+        var initPlugins = function () {
             // date from
             $date_from.datepicker({
                 dateFormat: "dd.mm.yy",
                 altFormat: "yy-mm-dd",
                 altField: "#cm_date_from"
             }).change(function () {
-                if (!$(this).val()) $("#cm_date_from").val('');
+                if (!$(this).val()) {
+                    $("#cm_date_from").val('');
+                };
             });
-
-            var from = new Date();
-            from.setDate(from.getDate() - 1);
-            var format_from = $.datepicker.formatDate('dd.mm.yy', from);
-            var alt_from = $.datepicker.formatDate('yy-mm-dd', from);
-            var format_to = $.datepicker.formatDate('dd.mm.yy', new Date());
-            $date_from.val(format_from);
-            $("#cm_date_from").val(alt_from);
-            // date to
-            $date_to.datepicker({
-                dateFormat: "dd.mm.yy",
-                altFormat: "yy-mm-dd",
-                altField: "#cm_date_to"
-            }).change(function () {
-                if (!$(this).val()) $("#cm_date_to").val('');
-            });
-            $date_to.val(format_to);
-            var alt_to = $.datepicker.formatDate('yy-mm-dd', new Date());
-            $("#cm_date_to").val(alt_to);
 
             $('tr td a[data-action="show-salary"]').live('click', function () {
                 var that = $(this);
@@ -68,7 +51,7 @@ var doctors_log = (function ($columns) {
             });
         };
 
-        var get_columns = function (isInit) {
+        var getColumns = function (isInit) {
 
             jQuery.ajax({
                 url: '/ajax/modules/dashboard/log_generate_columns.php',
@@ -94,7 +77,7 @@ var doctors_log = (function ($columns) {
          * ТАБЛИЦА
          * @type {*|jQuery}
          */
-        var init_table = function () {
+        var initTable = function () {
 
             $table.DataTable({
                 dom: 'Bfrtip',
@@ -273,7 +256,7 @@ var doctors_log = (function ($columns) {
             //отлавливаем событие только 1 раз
             e.stopImmediatePropagation();
             // отдельным запросом запрашиваем нужное количество колонок
-            get_columns();
+            getColumns();
             return false;
         });
 
@@ -288,11 +271,11 @@ var doctors_log = (function ($columns) {
         });
         return {
             init: function (columns) {
-                init_plugins();
-                init_table(columns);
+                initPlugins();
+                initTable(columns);
             },
-            reinit_table: function (columns) {
-                init_table(columns);
+            reinitTable: function (columns) {
+                initTable(columns);
             }
         };
 
