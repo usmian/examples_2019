@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/', function (){
     return view('welcome');
 });
+
+/** Чисто для примера сделан проход команды регистрации */
+Route::prefix('auth')->group(function () {
+    Route::get('registration', 'RegisterController@getRegistrationForm'); /** @see \App\Http\Controllers\RegisterController::getRegistrationForm() */
+    Route::post('registration', 'RegisterController@registration'); /** @see \App\Http\Controllers\RegisterController::registration() */
+});
+
