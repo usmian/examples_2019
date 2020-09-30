@@ -22,11 +22,18 @@ use Illuminate\Mail\Mailer;
  */
 class CommandHandler extends AbstractCommandHandler
 {
-    /** Менеджер моделей пользователи
+    /** Users ModelManager
      * @var UsersManager
      */
     protected UsersManager $usersManager;
+
     protected Mailer $mailer;
+
+    public function __construct()
+    {
+        $this->usersManager = resolve(UsersManager::class);
+        $this->mailer = resolve(Mailer::class);
+    }
 
     /**
      * @param CommandInterface $command
@@ -45,6 +52,6 @@ class CommandHandler extends AbstractCommandHandler
             throw new DbException('Ошибка БД при создании аккаунта пользователя');
         };
         /**  отправление письма */
-        $this->mailer->send($this->command);
+        //$this->mailer->send($this->command);
     }
 }

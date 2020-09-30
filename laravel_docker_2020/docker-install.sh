@@ -51,9 +51,5 @@ sleep 15
 # накатываем миграции
 sudo docker exec -u $(id -u):$(id -g) laravel-php php artisan migrate
 
-# добавим файл для логов с правами на него
-#sudo touch runtime/logs/error.log
-# ставим полные права для всех на сервисную папку runtime для успешной работы тестов
-#sudo chmod 777 -R runtime
 #в конце убираем за собой только что запущенный ssh-agent
 ssh-agent -k

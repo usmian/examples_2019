@@ -9,20 +9,20 @@ use App\Components\AbstractDto;
  * Публичная регистрация пользователя
  * Class Command
  *
- * @property $login
- * @property $password
- * @prropery $email
+ * @property string $name
+ * @property string $password
+ * @prropery string $email
  */
 class Command extends AbstractDto implements CommandInterface
 {
-    protected string $login;
+    protected string $name;
     protected string $password;
     protected string $email;
 
     public function toArray(): array
     {
         return [
-            'login' => $this->login,
+            'name' => $this->name,
             'password' => $this->password,
             'email' => $this->email,
         ];

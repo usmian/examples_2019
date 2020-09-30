@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\CommandBus\CommandBus;
 use App\CommandBus\Auth\Register\Command as RegisterCommand;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use App\ModelManagers\UsersManager;
 use App\QueryBus\QueryBus;
@@ -43,14 +44,6 @@ class RegisterController extends Controller
     {
         $this->commandBus = resolve(CommandBus::class);
         $this->queryBus = resolve(QueryBus::class);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getRegistrationForm()
-    {
-        return view('registration');
     }
 
     /**

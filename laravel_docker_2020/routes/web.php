@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function (){
-    return view('welcome');
+    return view('registration');
 });
 
 /** Чисто для примера сделан проход команды регистрации */
 Route::prefix('auth')->group(function () {
-    Route::get('registration', 'RegisterController@getRegistrationForm'); /** @see \App\Http\Controllers\RegisterController::getRegistrationForm() */
-    Route::post('registration', 'RegisterController@registration'); /** @see \App\Http\Controllers\RegisterController::registration() */
+    Route::post('registration', 'Auth\RegisterController@registration'); /** @see \App\Http\Controllers\RegisterController::registration() */
 });
 

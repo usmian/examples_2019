@@ -29,7 +29,7 @@ class UsersManager extends AbstractModelManager
         $user = new User();
         /** Вручную распаковываем Dto, чтобы захэшировать пароль */
         $user->fill([
-            'login' => $registerCommand->login,
+            'name' => $registerCommand->name,
             'password' => password_hash($registerCommand->password, PASSWORD_DEFAULT),
             'email' => $registerCommand->email,
         ]);

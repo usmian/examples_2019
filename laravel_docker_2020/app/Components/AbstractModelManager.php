@@ -9,7 +9,7 @@ abstract class AbstractModelManager
     abstract public function getModelName() : string;
 
     /**
-     * универсальный метод скоупа по параметрам, после которого можно выполнить по цепочке хоть удаление, хоть выборку
+     * универсальный метод скоупа по параметрам
      * @param array $attributes
      * @return Builder
      */

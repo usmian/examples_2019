@@ -67,17 +67,18 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <form action="/auth/registration" method="POST">
+            @csrf
             <div>
-                <label for="login">login</label>
-                <input id="login" name="login" type="text" class="@error('login') is-invalid @enderror">
+                <label for="name">login</label>
+                <input id="name" name="name" type="text">
             </div>
             <div>
                 <label for="pass">pass</label>
-                <input id="password" name="password" type="password" class="@error('password') is-invalid @enderror">
+                <input id="password" name="password" type="password">
             </div>
             <div>
                 <label for="email">email</label>
-                <input id="email" name="email" type="email" class="@error('email') is-invalid @enderror">
+                <input id="email" name="email" type="email">
             </div>
             <button type="submit">register</button>
         </form>

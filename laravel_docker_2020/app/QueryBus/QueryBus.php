@@ -9,9 +9,9 @@ class QueryBus
      * Вообще собирать всякое можно,например, из редиса, куда кэшируются всякие данные
      *
      * @param QueryInterface $query
-     * @return
+     * @return mixed
      */
-    public function query(QueryInterface $query): void
+    public function query(QueryInterface $query)
     {
         return app($query);
     }

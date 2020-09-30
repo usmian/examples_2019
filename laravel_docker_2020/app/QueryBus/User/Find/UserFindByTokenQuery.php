@@ -16,25 +16,25 @@ class UserFindByTokenQuery implements QueryInterface
     protected string $token;
 
     /**
+     * @var UsersManager
+     */
+    protected UsersManager $usersManager;
+
+    /**
      * UserFindByTokenQuery constructor.
      * @param string $token
      */
     public function __construct(string $token)
     {
         $this->token = $token;
+        $this->usersManager = resolve(UsersManager::class);
     }
-
-    /**
-     * @var UsersManager
-     */
-    protected UsersManager $usersManager;
 
     /**
      * @return mixed
      */
     public function __invoke()
     {
-        $this->usersManager = resolve(UsersManager::class);
         return $this->usersManager->finOneByToken($this->token);
     }
 }

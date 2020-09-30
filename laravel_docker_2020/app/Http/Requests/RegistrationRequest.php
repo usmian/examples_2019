@@ -5,8 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * @property string $username
+ * @property string $name
  * @property string $password
+ * @property string $email
  */
 class RegistrationRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'login' => "required|string",
+            'name' => "required|string",
             'password' => "required|string",
             'email' => "required|string"
         ];
@@ -37,7 +38,7 @@ class RegistrationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'username' => 'Невалидный юзернэйм',
+            'name' => 'Невалидный юзернэйм',
             'password' => 'Невалидный пароль',
             'email' => 'Невалидный емэйл'
         ];
