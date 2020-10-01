@@ -8,7 +8,7 @@ use App\QueryBus\QueryInterface;
  * Запрос на поиск по токену
  *
  * Class UserFindByTokenQuery
- * @package App\QueryBus\User\Find
+ * @package App\QueryBus\UserController\Find
  *
  */
 class UserFindByTokenQuery implements QueryInterface
