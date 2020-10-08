@@ -104,7 +104,7 @@ class Task extends PModel
     public function relations()
     {
         return array(
-            'performer_user' => array(self::BELONGS_TO, 'User', 'performer_id'),
+            'performer_user' => array(self::BELONGS_TO, 'UserController', 'performer_id'),
             'performer_role' => array(self::BELONGS_TO, 'Role', 'performer_id'),
         );
     }
@@ -197,7 +197,7 @@ class Task extends PModel
         $criteria->compare('due_date', $this->due_date);
 
         //
-        if (!User::model()->hasRole('admin')) {
+        if (!UserController::model()->hasRole('admin')) {
             $criteria->addCondition($this->getPerformerCondition(true));
         }
 
@@ -385,7 +385,7 @@ class Task extends PModel
         if ($this->performer_type == self::PERFORMER_TYPE_USER && $this->performer_id == $userId) {
             return true;
         }
-        if ($this->performer_type == self::PERFORMER_TYPE_ROLE && User::model()->hasRoleById($this->performer_id)) {
+        if ($this->performer_type == self::PERFORMER_TYPE_ROLE && UserController::model()->hasRoleById($this->performer_id)) {
             return true;
         }
         return false;
@@ -434,7 +434,7 @@ class Task extends PModel
         if ($this->isNewRecord) {
             return true;
         }
-        return $this->isReporter() || $this->isPerformer() || $this->isResponsible() || User::model()->hasRole('admin');
+        return $this->isReporter() || $this->isPerformer() || $this->isResponsible() || UserController::model()->hasRole('admin');
     }
 
     /**
@@ -452,7 +452,7 @@ class Task extends PModel
         //
         if ($id) {
             return ($type == self::PERFORMER_TYPE_USER) ?
-                Helper::getShortName(User::model()->getNameById($id)) :
+                Helper::getShortName(UserController::model()->getNameById($id)) :
                 Role::model()->getNameById($id);
         }
 
@@ -513,7 +513,7 @@ class Task extends PModel
         if (!$id) {
             $id = $this->reporter_id;
         }
-        return Helper::getShortName(User::model()->getNameById($id));
+        return Helper::getShortName(UserController::model()->getNameById($id));
     }
 
     /**
@@ -525,7 +525,7 @@ class Task extends PModel
         if (!$id) {
             $id = $this->responsible_id;
         }
-        return ($id) ? User::model()->getNameById($id) : null;
+        return ($id) ? UserController::model()->getNameById($id) : null;
     }
 
     /**
@@ -567,7 +567,7 @@ class Task extends PModel
     public function getComboPerformersList()
     {
         $result = array();
-        $users = User::model()->getDropDown();
+        $users = UserController::model()->getDropDown();
         $roles = Role::model()->getDropDown(true);
         foreach ($users as $i => $u) {
             $result[] = array('id' => self::PERFORMER_TYPE_USER . '_' . $i, 'text' => $u, 'group' => 'Сотрудник');
@@ -799,7 +799,10 @@ class Task extends PModel
      */
     public function isCompleted()
     {
-        return $this->status == self::STATUS_COMPLETED || $this->status == self::STATUS_CLOSED || $this->needView() || !($this->isPerformer());
+        return $this->status == self::STATUS_COMPLETED
+            || $this->status == self::STATUS_CLOSED
+            || $this->needView()
+            || !($this->isPerformer());
     }
 
     /**

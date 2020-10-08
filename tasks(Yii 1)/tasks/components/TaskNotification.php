@@ -5,14 +5,6 @@
  */
 class TaskNotification extends CApplicationComponent
 {
-
-    /**
-     *
-     */
-    public function init() {
-
-    }
-
     /**
      * @param Task $task
      * @return bool
@@ -49,13 +41,13 @@ class TaskNotification extends CApplicationComponent
             return false;
         }
 
-        $user = User::model()->getById($userId);
+        $user = UserController::model()->getById($userId);
         $labels = Task::model()->labels();
         foreach ($fields as $i => $f) {
             $fields[$i]['key'] = $labels[$fields[$i]['key']];
         }
         $params = array(
-            'user' => $user->name,
+            'UserController' => $user->name,
             'url' => Yii::app()->getBaseUrl(true) .'/tasks/default/update/id/' . $task->task_id,
             'title' => $task->title,
             'fields' => $fields
@@ -77,18 +69,18 @@ class TaskNotification extends CApplicationComponent
 
         //
         if ($task->performer_type == Task::PERFORMER_TYPE_USER && $task->performer_id != $author) {
-            $email = User::model()->getEmailById($task->performer_id);
+            $email = UserController::model()->getEmailById($task->performer_id);
             if ($email) {
                 $list[] = $email;
             }
         }
         if ($task->performer_type == Task::PERFORMER_TYPE_ROLE) {
-            $list = User::model()->getEmailsByRoleId($task->performer_id);
+            $list = UserController::model()->getEmailsByRoleId($task->performer_id);
         }
 
         //
         if ($task->responsible_id && $task->responsible_id != $author) {
-            $email = User::model()->getEmailById($task->responsible_id);
+            $email = UserController::model()->getEmailById($task->responsible_id);
             if ($email) {
                 $list[] = $email;
             }
@@ -96,7 +88,7 @@ class TaskNotification extends CApplicationComponent
 
         //
         if ($withReporter && $task->reporter_id != $author) {
-            $email = User::model()->getEmailById($task->reporter_id);
+            $email = UserController::model()->getEmailById($task->reporter_id);
             if ($email) {
                 $list[] = $email;
             }

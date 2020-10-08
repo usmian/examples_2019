@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Усиков
+ * UserController: Усиков
  * Date: 08.12.2018
  * Time: 23:10
  */
@@ -66,7 +66,7 @@ class ApiSecurityController extends AbstractController
         $response = [
             'grantedList' => $grantedList,
             'access' => $access,
-            'user' => $user
+            'UserController' => $user
         ];
 
         $response = $this->serializer->serialize($response, 'json');

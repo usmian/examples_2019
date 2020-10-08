@@ -40,7 +40,7 @@ class TaskHistory extends PModel
 	public function relations()
 	{
 		return array(
-            'users' => array(self::BELONGS_TO, 'User', 'user_id')
+            'users' => array(self::BELONGS_TO, 'UserController', 'user_id')
         );
 	}
 
@@ -52,7 +52,7 @@ class TaskHistory extends PModel
 		return array(
 			'task_history_id' => 'Task History',
 			'task_id' => 'Task',
-			'user_id' => 'User',
+			'user_id' => 'UserController',
 			'status' => 'Status',
 			'date_created' => 'Date Created',
 			'project_id' => 'Project',

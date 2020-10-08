@@ -212,7 +212,7 @@ class ApiController extends AController
         $params = $_GET;
 
         //
-        $users = User::model()->getSalaryHoursReport($params);
+        $users = UserController::model()->getSalaryHoursReport($params);
         $params['users'] = array_keys($users);
         $type = Helper::getFromMap($params, 'type');
 
@@ -234,7 +234,7 @@ class ApiController extends AController
 
         //
         if (Helper::getFromMap($params, 'download')) {
-            $csv = User::model()->prepareSalaryHoursCsv($result, $type);
+            $csv = UserController::model()->prepareSalaryHoursCsv($result, $type);
             $name = 'Зарплаты - выгрузка по часам ' . ($type ? ($type == 1 ? 'по расписанию' : 'по визитам') : '') . ' от ' . Yii::app()->clock->date('d.m.Y H:i') . '.csv';
             header('Content-Type: text/csv');
             header("Content-Transfer-Encoding: Binary");

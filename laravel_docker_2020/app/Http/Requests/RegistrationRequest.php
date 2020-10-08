@@ -29,8 +29,8 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|string",
-            'password' => "required|string",
+            'name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:12', 'max:255'], // TODO: сделать валидацию пароля с проверкой на криптостойкость(хотя бы 1 цифра символ, разные регистры..)
             'email' => "required|string"
         ];
     }
@@ -38,9 +38,10 @@ class RegistrationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name' => 'Невалидный юзернэйм',
-            'password' => 'Невалидный пароль',
-            'email' => 'Невалидный емэйл'
+            'required' => 'Поле обязательно',
+            'string' => 'Строка',
+            'max' => 'Максимальная длина :max символов',
+            'min' => 'Минимальная длина :min символов',
         ];
     }
 }

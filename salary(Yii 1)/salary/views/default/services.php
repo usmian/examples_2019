@@ -37,7 +37,7 @@ $this->breadcrumb(array('Зарплаты' => '/salary', 'Выгрузка по 
                 <div class="col-md-2">
                     <select class="doctor selectbox form-control">
                         <option value="">[Сотрудник]</option>
-                        <? foreach (User::model()->getDropDown(Role::ROLE_DOCTOR) as $k => $item):?>
+                        <? foreach (UserController::model()->getDropDown(Role::ROLE_DOCTOR) as $k => $item):?>
                             <option value="<?=$k?>"><?=$item?></option>
                         <? endforeach; ?>
                     </select>
@@ -85,7 +85,7 @@ $this->breadcrumb(array('Зарплаты' => '/salary', 'Выгрузка по 
                 <div class="col-md-2">
                     <select class="recommendation selectbox form-control">
                         <option value="">[Рекомендация]</option>
-                        <? foreach (User::model()->getDropDown() as $k => $item):?>
+                        <? foreach (UserController::model()->getDropDown() as $k => $item):?>
                             <option value="<?=$k?>"><?=$item?></option>
                         <? endforeach; ?>
                     </select>

@@ -25,3 +25,6 @@ php:
 
 permissions:
 	sudo chown ${USER}:${USER} docker -R
+
+make-auth:
+	sudo docker exec -it laravel-php php artisan make:auth

@@ -60,7 +60,7 @@ class DefaultController extends MController
         }
         $model->handleViewed();
 
-        $users = User::model()->getDropDown();
+        $users = UserController::model()->getDropDown();
         $roles = Role::model()->getDropDown();
         $types = Task::$tasksTypes;
 

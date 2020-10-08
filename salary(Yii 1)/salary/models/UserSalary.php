@@ -82,7 +82,7 @@ class UserSalary extends PModel
         $criteria->compare('user_id', $this->user_id);
         $criteria->compare('value', $this->value);
 
-        $criteria = User::model()->getClinicsCriteria($criteria, 'user_salary');
+        $criteria = UserController::model()->getClinicsCriteria($criteria, 'user_salary');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -154,7 +154,7 @@ class UserSalary extends PModel
      */
     public function getUserName()
     {
-       return User::model()->getNameById($this->user_id);
+       return UserController::model()->getNameById($this->user_id);
     }
 
     /**
@@ -162,7 +162,7 @@ class UserSalary extends PModel
      */
     public function getUserRoles()
     {
-        $user = User::model()->getById($this->user_id);
+        $user = UserController::model()->getById($this->user_id);
         return $user->roleTitles;
     }
 
@@ -171,7 +171,7 @@ class UserSalary extends PModel
      */
     public function getUserProfessions()
     {
-        $user = User::model()->getById($this->user_id);
+        $user = UserController::model()->getById($this->user_id);
         return $user->professionTitles;
 
     }

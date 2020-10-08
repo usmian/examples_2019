@@ -68,19 +68,49 @@
     <div class="content">
         <form action="/auth/registration" method="POST">
             @csrf
-            <div>
-                <label for="name">login</label>
-                <input id="name" name="name" type="text">
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Псевдоним') }}</label>
+                @if ($errors->has('name'))
+                    <div class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </div>
+                @endif
+                <div class="col-md-6">
+                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                           name="name" value="{{ old('name') }}" autofocus>
+                </div>
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Пароль') }}</label>
+                @if ($errors->has('password'))
+                    <div class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong></div>
+                @endif
+                <div class="col-md-6">
+                    <input id="password" type="text"
+                           class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                           name="password">
+                </div>
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                @if ($errors->has('email'))
+                    <div class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong></div>
+                @endif
+                <div class="col-md-6">
+                    <input id="email" type="email"
+                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                           name="email">
+                </div>
+                <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Телефон') }}</label>
+                @if ($errors->has('phone'))
+                    <div class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('phone') }}</strong></div>
+                @endif
+                <div class="col-md-6">
+                    <input id="phone" type="text"
+                           class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                           name="phone">
+                </div>
+                <button type="submit" style="margin: 5px">register</button>
             </div>
-            <div>
-                <label for="pass">pass</label>
-                <input id="password" name="password" type="password">
-            </div>
-            <div>
-                <label for="email">email</label>
-                <input id="email" name="email" type="email">
-            </div>
-            <button type="submit">register</button>
         </form>
     </div>
 </div>

@@ -73,7 +73,7 @@ class SalaryReportService extends PModel
         return array(
             'salary_report_service_id' => 'Salary Report Service',
             'salary_report_id' => 'Salary Report',
-            'user_salary_service_id' => 'User Salary Service',
+            'user_salary_service_id' => 'UserController Salary Service',
             'service_id' => 'Service',
             'value' => 'Value',
             'original_value' => 'Original Value',
@@ -189,7 +189,7 @@ class SalaryReportService extends PModel
      */
     public static function addCommissions($model)
     {
-        self::addCommission($model, 'user');
+        self::addCommission($model, 'UserController');
         self::addCommission($model, 'recommendation');
     }
 
@@ -201,8 +201,8 @@ class SalaryReportService extends PModel
     private static function addCommission($model, $switch)
     {
         /** @var SalaryReport $model */
-        $value = ($switch == 'user') ? 'value' : 'recommendation_value';
-        $type = ($switch == 'user') ? self::TYPE_PAY : self::TYPE_RECOMMENDATION;
+        $value = ($switch == 'UserController') ? 'value' : 'recommendation_value';
+        $type = ($switch == 'UserController') ? self::TYPE_PAY : self::TYPE_RECOMMENDATION;
         $invoice = ("SELECT rpt_service.invoice_service_id 
                        FROM salary_report_service rpt_service 
                        INNER JOIN invoice_services inv_service on inv_service.invoice_service_id = rpt_service.invoice_service_id

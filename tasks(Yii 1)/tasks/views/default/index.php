@@ -41,12 +41,12 @@ $this->breadcrumb($breadcrumbs);
 
                     array(
                         'type' => 'raw', 'name' => 'reporter_id', 'value' => 'Helper::getShortName($data->_reporter)', 'htmlOptions' => array('width' => '10%'),
-                        'filter' => BSHtml::activeDropDownList($model, 'reporter_id', User::model()->getDropDown(), array('class' => 'form-control', "empty" => ""))
+                        'filter' => BSHtml::activeDropDownList($model, 'reporter_id', UserController::model()->getDropDown(), array('class' => 'form-control', "empty" => ""))
                     ),
 
                     array(
                         'type' => 'raw', 'name' => 'responsible_id', 'htmlOptions' => array('width' => '10%'), 'value' => 'Helper::getShortName($data->_responsible)',
-                        'filter' => BSHtml::activeDropDownList($model, 'responsible_id', User::model()->getDropDown(), array('class' => 'form-control', "empty" => ""))
+                        'filter' => BSHtml::activeDropDownList($model, 'responsible_id', UserController::model()->getDropDown(), array('class' => 'form-control', "empty" => ""))
                     ),
                     array(
                         'type' => 'raw', 'name' => 'type', 'htmlOptions' => array('width' => '10%'), 'value' => '$data->getType()',

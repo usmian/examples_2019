@@ -83,7 +83,7 @@ class SalaryReport extends PModel
     public function relations()
     {
         return array(
-            'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'UserController' => array(self::BELONGS_TO, 'UserController', 'user_id'),
             'salaryReportService' => array(self::HAS_MANY, 'SalaryReportService', 'salary_report_id'),
             'cost' => [self::HAS_MANY, 'Cost', 'salary_report_id'],
         );
@@ -140,9 +140,9 @@ class SalaryReport extends PModel
         $criteria->compare('salary_report.user_id', $user ? $user : $this->user_id);
         $criteria->compare('salary_report.status', $this->status);
 
-        $criteria = User::model()->getClinicsCriteria($criteria, 'salary_report');
+        $criteria = UserController::model()->getClinicsCriteria($criteria, 'salary_report');
 
-        $criteria->with = array(['user', 'resetScope' => true]);
+        $criteria->with = array(['UserController', 'resetScope' => true]);
         $criteria->together = true;
 
 
@@ -301,7 +301,7 @@ class SalaryReport extends PModel
      */
     public function getName()
     {
-        return User::model()->getNameById($this->user_id);
+        return UserController::model()->getNameById($this->user_id);
     }
 
     /**
@@ -363,7 +363,7 @@ class SalaryReport extends PModel
         $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A2', 'Сотрудник:');
-        $username = User::model()->getNameById($report->user_id);
+        $username = UserController::model()->getNameById($report->user_id);
         $sheet->setCellValue('B2', $username);
         $sheet->setCellValue('A3', 'Период:');
         $sheet->setCellValue('B3', $report->getDatesTitle());
@@ -473,7 +473,7 @@ class SalaryReport extends PModel
         $date = date('d.m.Y');
         return [
             'dates' => $model->getDatesTitle(),
-            'user' => $model->getUserName(true),
+            'UserController' => $model->getUserName(true),
             'value' => $model->value,
             'costs' => Cost::model()->getCostsByReportId($id),
             'paid' => $model->paid_value,
@@ -544,7 +544,7 @@ class SalaryReport extends PModel
         $report['value'] = Helper::price($this->value);
         $report['salary'] = Helper::price($this->salary_value);
         $report['status'] = SalaryReport::model()->getStatusTitle($this->status);
-        $report['user_name'] = User::model()->getNameById($this->user_id);
+        $report['user_name'] = UserController::model()->getNameById($this->user_id);
         $report['bonus_value'] = (!empty($this->bonus_value)) ? Helper::price($this->bonus_value) : '';
         $report['bonus_comment'] = $this->bonus_comment;
         $report['penalty_value'] = (!empty($this->penalty_value)) ? Helper::price($this->penalty_value) : '';

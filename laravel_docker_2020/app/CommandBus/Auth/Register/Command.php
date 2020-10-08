@@ -11,13 +11,15 @@ use App\Components\AbstractDto;
  *
  * @property string $name
  * @property string $password
- * @prropery string $email
+ * @property string $email
+ * @property string $phone
  */
 class Command extends AbstractDto implements CommandInterface
 {
     protected string $name;
     protected string $password;
     protected string $email;
+    //protected string $phone;
 
     public function toArray(): array
     {
@@ -25,6 +27,7 @@ class Command extends AbstractDto implements CommandInterface
             'name' => $this->name,
             'password' => $this->password,
             'email' => $this->email,
+            //'phone'=> $this->phone,
         ];
     }
 }

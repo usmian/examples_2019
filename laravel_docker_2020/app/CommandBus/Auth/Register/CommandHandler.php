@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailer;
 
 /**
  * Публичная Регистрация пользователя
- * - Присваиваем роль user
+ * - Присваиваем роль USER_ROLE
  * - Пишем в базу
  * - Отправляем письмо
  * - Ждем подтверждения
@@ -22,7 +22,7 @@ use Illuminate\Mail\Mailer;
  */
 class CommandHandler extends AbstractCommandHandler
 {
-    /** Users ModelManager
+    /**
      * @var UsersManager
      */
     protected UsersManager $usersManager;

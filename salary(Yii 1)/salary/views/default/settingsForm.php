@@ -62,7 +62,7 @@ $this->submenu(array(
                                 <span class="salary-title "><?= $model->getUserRoles(); ?></span>
                             </div>
                         </div>
-                        <? if (User::isDoctor($model->user_id)) : ?>
+                        <? if (UserController::isDoctor($model->user_id)) : ?>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Специальности:</label>
@@ -111,7 +111,7 @@ $this->submenu(array(
                                 array('name' => 'profession_id', 'type' => 'raw', 'value' => '$data->getProfession($data->profession_id)', 'filter' => BSHtml::activeDropDownList($services, 'profession_id', Profession::model()->getList(), ['empty' => '', 'class' => 'selectbox form-control my-filter']),
                                     'htmlOptions' => array('width' => '15%')),
                                 array('name' => 'price', 'type' => 'raw', 'value' => 'Helper::price($data->price)', 'filter' => false, 'sortable' => true, 'htmlOptions' => array('width' => '14%')),
-                                array('name' => '_salary_service_value', 'type' => 'raw', 'value' => '$data->getValueHtml()', 'filter' => false, 'sortable' => true, 'htmlOptions' => array('width' => '12%'), 'visible' => (User::isDoctor($model->user_id)) ? true : false),
+                                array('name' => '_salary_service_value', 'type' => 'raw', 'value' => '$data->getValueHtml()', 'filter' => false, 'sortable' => true, 'htmlOptions' => array('width' => '12%'), 'visible' => (UserController::isDoctor($model->user_id)) ? true : false),
                                 array('name' => '_recommend_value', 'type' => 'raw', 'value' => '$data->getValueRecommendationHtml()', 'filter' => false, 'sortable' => true, 'htmlOptions' => array('width' => '12%')),
                             ),
                             'enableSorting' => true,
@@ -143,7 +143,7 @@ $this->submenu(array(
 <? $this->scripts($this->module->assetsUrl . '/js/salaryServices.js', true); ?>
 <? $this->scripts($this->module->assetsUrl . '/js/salary.js', true) ?>
 
-<input type="hidden" class="is-doctor" value="<?=User::isDoctor($model->user_id)?>"/>
+<input type="hidden" class="is-doctor" value="<?=UserController::isDoctor($model->user_id)?>"/>
 <input type="hidden" id="user-id" value="<?= $id ?>"/>
 <?php $this->endWidget(); ?>
 

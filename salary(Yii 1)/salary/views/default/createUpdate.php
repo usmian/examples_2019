@@ -70,7 +70,7 @@ $disabled = $model->status > SalaryReport::STATUS_NEW ? 'disabled' : false;
                     <div class="text-right">
                         <? if ($model->reporter_id) { ?>
                             <div class="document-info-block">
-                                <strong>Автор: </strong> <?= Helper::getShortName(User::model()->getNameById($model->reporter_id)) ?>
+                                <strong>Автор: </strong> <?= Helper::getShortName(UserController::model()->getNameById($model->reporter_id)) ?>
                             </div>
                         <? } ?>
                         <? if ($model->date_created) { ?>
@@ -110,7 +110,7 @@ $disabled = $model->status > SalaryReport::STATUS_NEW ? 'disabled' : false;
             </div>
             <div class="col-md-3 form-parent">
                 <? if ($action == 'create') { ?>
-                    <?php echo $form->dropDownListControlGroup($model, 'user_id', User::model()->getDropDownWithRoles(), ['class' => 'selectbox user', 'empty' => '']); ?>
+                    <?php echo $form->dropDownListControlGroup($model, 'user_id', UserController::model()->getDropDownWithRoles(), ['class' => 'selectbox user', 'empty' => '']); ?>
                 <? } else { ?>
                     <div class="form-group">
                         <label>Сотрудник</label>
@@ -263,7 +263,7 @@ $disabled = $model->status > SalaryReport::STATUS_NEW ? 'disabled' : false;
 </div>
 </div>
 <input type="hidden" id="users-salary" value='<?= json_encode(UserSalary::getAllValues()); ?>'/>
-<input type="hidden" id="users-doctors" value='<?= json_encode(User::getIdsByRole('doctor')); ?>'/>
+<input type="hidden" id="users-doctors" value='<?= json_encode(UserController::getIdsByRole('doctor')); ?>'/>
 
 <? if ($action == 'update'): ?>
     <?= $form->hiddenField($model, 'period'); ?>

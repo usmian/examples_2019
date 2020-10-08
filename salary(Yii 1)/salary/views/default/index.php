@@ -32,7 +32,7 @@ $this->breadcrumb(array('Зарплаты'));
 
                         array('type' => 'raw', 'name' => 'user_id',
                             'value' => '$data->getName()',
-                            'filter' => $this->checkAccess('manage') ? BSHtml::activeDropDownList($model, 'user_id', User::model()->getDropDown(), ['empty' => '', 'class' => 'selectbox form-control']) : false,
+                            'filter' => $this->checkAccess('manage') ? BSHtml::activeDropDownList($model, 'user_id', UserController::model()->getDropDown(), ['empty' => '', 'class' => 'selectbox form-control']) : false,
                             'htmlOptions' => array('width' => '20%')
                         ),
                         array('type' => 'raw', 'name' => 'value',

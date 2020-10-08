@@ -187,14 +187,14 @@ class DefaultController extends MController
     }
 
     /**
-     * @return User
+     * @return UserController
      */
     private function getListModel()
     {
-        $model = new User('search');
+        $model = new UserController('search');
         $model->unsetAttributes();
-        if (isset($_GET['User'])) {
-            $model->attributes = $_GET['User'];
+        if (isset($_GET['UserController'])) {
+            $model->attributes = $_GET['UserController'];
         }
         return $model;
     }

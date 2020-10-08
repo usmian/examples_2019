@@ -4,6 +4,7 @@ namespace App\ModelManagers;
 
 use App\CommandBus\Auth\Register\Command as RegisterCommand;
 use App\Components\AbstractModelManager;
+use App\Definitions\UserRoleDefinition;
 use App\Models\User;
 
 /**
@@ -21,10 +22,11 @@ class UsersManager extends AbstractModelManager
     }
 
     /**
-     * @param RegisterCommand $registerCommand
+     * @param RegisterCommand $registerCommand - команда(dto) регистрации пользователя
+     * @param array $roles роль(и) для создаваемого юзера (При обычной регистрации - присваиваем роль обычного пользователя)
      * @return bool
      */
-    public function createUserAccount(RegisterCommand $registerCommand): bool
+    public function createUserAccount(RegisterCommand $registerCommand, array $roles = [UserRoleDefinition::USER_ROLE]): bool
     {
         $user = new User();
         /** Вручную распаковываем Dto, чтобы захэшировать пароль */
@@ -32,6 +34,10 @@ class UsersManager extends AbstractModelManager
             'name' => $registerCommand->name,
             'password' => password_hash($registerCommand->password, PASSWORD_DEFAULT),
             'email' => $registerCommand->email,
+            'roles' => $roles // Можно присвоить сразу несколько ролей. Проверка на валидность - снаружи
+            // TODO: запилить телефон с подтверждением
+            //'phone' => $registerCommand->phone,
+            //'phone_formatted'=> PhoneHelper::formatToInt($registerCommand->phone),
         ]);
         return $user->save();
     }

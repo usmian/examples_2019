@@ -65,7 +65,7 @@ class ApiController extends AController
     {
         $type = Yii::app()->request->getParam('type');
         $types = Task::$performersTypes;
-        $users = User::model()->getDropDown();
+        $users = UserController::model()->getDropDown();
         $roles = Role::model()->getDropDown(true);
 
         $performers = ($type == Task::PERFORMER_TYPE_USER) ? $users : $roles;
