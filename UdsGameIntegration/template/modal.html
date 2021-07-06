@@ -16,8 +16,8 @@
                        type="text"
                        value=""
                        minlength="6"
-                       maxlength="6"/>
-
+                       maxlength="6"
+                />
             </label>
             <br/>
             <label for="modal_uds_scores" style="margin-bottom: 10px;">баллы
@@ -29,7 +29,8 @@
                        step="1"
                        value=""
                        min="0"
-                       disabled/>
+                       disabled
+                />
             </label>
             <br/>
             <label for="modal_uds_rate" style="margin-bottom: 10px;">скидка:
@@ -40,28 +41,34 @@
                        value=""
                        step="1"
                        min="0"
-                       disabled/>
+                       disabled
+                />
             </label>
             <input class="b-form__bttn b-form__bttn_blue"
                    id="recalulate-visit"
                    style="display: none"
-                   value="пересчитать сумму визита"/>
+                   value="пересчитать сумму визита"
+            />
             <input id="calculated-visit_uds"
                    style="display: none;margin-left: 50%;margin-top: 3%"
-                   disabled/>
+                   disabled
+            />
             <input id="modal_uds_visit_id"
                    name="visit_id"
-                   type="hidden"/>
+                   type="hidden"
+            />
         </div>
         <div class="modal-footer">
             <input class="b-form__bttn b-form__bttn_red"
                    id="submit-purchase"
                    style="display: none"
-                   value="списать баллы"/>
+                   value="списать баллы"
+            />
             <input class="b-form__bttn b-form__bttn_green"
                    id="submit-udc-code"
                    type="submit"
-                   value="отправить код"/>
+                   value="отправить код"
+            />
             <button class="btn btn-mini"
                     data-dismiss="modal"
                     id="uds-game-view__close">Закрыть</button>

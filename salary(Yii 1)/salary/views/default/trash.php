@@ -5,7 +5,6 @@ $this->breadcrumb(array('Зарплаты' => '/salary/default/index', 'Корз
 
 
 <? $this->renderPartial('_menu'); ?>
-
     <div class="panel">
         <div class="panel-body">
             <?

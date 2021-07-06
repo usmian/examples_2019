@@ -2,7 +2,6 @@
 
 class ApiController extends AController
 {
-
     /**
      * @return array
      */
@@ -58,6 +57,7 @@ class ApiController extends AController
         $this->module->notification->handleCreate($model);
         $this->response(true);
     }
+
     /**
      * @return mixed
      */

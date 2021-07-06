@@ -1,4 +1,4 @@
-var salaryServices = {
+kvar salaryServices = {
 
     /**
      *
@@ -13,7 +13,6 @@ var salaryServices = {
         this.id = $('#user-id').val();
         salaryServices.initServices(this.id);
         salaryServices.bind();
-
     },
 
     /**

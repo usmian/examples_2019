@@ -14,12 +14,20 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class TagCommonRepository extends ServiceEntityRepository
 {
+    /**
+     * TagCommonRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, TagCommon::class);
     }
 
-
+    /**
+     * @todo привести в порядок
+     * @param array $criteria
+     * @return mixed
+     */
     public function findByType(array $criteria)
     {
         return $this->createQueryBuilder('t')
@@ -32,6 +40,10 @@ class TagCommonRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**@todo привести в порядок
+     * @param array $criteria
+     * @return mixed
+     */
     public function findByClientAndType(array $criteria)
     {
         return $this->createQueryBuilder('t')
@@ -45,7 +57,7 @@ class TagCommonRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
+    /**@todo привести в порядок
      * @param $key
      * @return mixed
      */

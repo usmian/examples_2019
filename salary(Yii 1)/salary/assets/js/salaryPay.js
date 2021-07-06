@@ -9,7 +9,6 @@ var salaryPay = (function () {
         bind();
         modal = $('.modal-pay-salary');
         wrap = $('.modal-body', modal);
-
     }
 
     /**
@@ -44,7 +43,6 @@ var salaryPay = (function () {
             }
             drawForm(r.data);
         }, wrap);
-
     }
 
     /**
@@ -156,5 +154,4 @@ var salaryPay = (function () {
     $(document).ready(function () {
         init();
     });
-
 })();

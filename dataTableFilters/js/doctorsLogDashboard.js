@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     var startDate = (start.getFullYear()) + "-" + ("0" + (start.getMonth() + 1)).slice(-2) + "-" + ("0" + (start.getDate() - 1)).slice(-2);
 
-
     var end = new Date();
     var endDate = (end.getFullYear()) + "-" + ("0" + (end.getMonth() + 1)).slice(-2) + "-" + ("0" + end.getDate()).slice(-2);
 
@@ -20,7 +19,6 @@ $(document).ready(function () {
 });
 
 let doctorsLog = (function ($columns) {
-
         /**
          * ПЕРЕМЕННЫЕ
          */
@@ -52,7 +50,6 @@ let doctorsLog = (function ($columns) {
         };
 
         var getColumns = function (isInit) {
-
             jQuery.ajax({
                 url: '/ajax/modules/dashboard/log_generate_columns.php',
                 type: "POST",
@@ -62,13 +59,13 @@ let doctorsLog = (function ($columns) {
                     // убирем старую таблицу и пересоздаем новую с нужным количеством колонок
                     $table.DataTable().destroy();
                     $table.empty();
-
                     var res = JSON.parse(response);
                     doctors_log(res).reinit_table();
                 },
                 error: function (response) {
                     // Если ошибка
-
+                    // todo
+                    alert('Произошла непрдвиденная ошибка');
                 }
             });
         };
@@ -172,7 +169,6 @@ let doctorsLog = (function ($columns) {
             var doctorId = that.attr('data-doctor_id'),
                 content = $('.b-payment_list'),
                 table = $('#salary_table_one'),
-                //
                 // в шаблоне index.list.html
                 modal = $('#salary-modal'),
                 dates = $filter_form.serialize();

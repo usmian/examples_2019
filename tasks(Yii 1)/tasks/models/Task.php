@@ -159,6 +159,7 @@ class Task extends PModel
     {
         $criteria = new CDbCriteria;
         $criteria->select = array('*', 'reporters.name as _reporter', 'responsible.name as _responsible');
+        // todo
         //$criteria->select = array('*', 'tasks.task_id as _reporter', 'tasks.task_id as _responsible');
         /*$criteria->with = array(
             'performer_user' => array('resetScope' => true),
@@ -220,10 +221,6 @@ class Task extends PModel
      */
     private function getAddJoin()
     {
-        /*return "
-            LEFT OUTER JOIN users \"reporters\" ON reporters.user_id = tasks.reporter_id
-            LEFT OUTER JOIN users \"responsible\" ON responsible.user_id = tasks.responsible_id
-        ";*/
         return "
 			LEFT OUTER JOIN (SELECT user_id as user_reporter_id, name FROM users) reporters ON reporters.user_reporter_id = tasks.reporter_id
 			LEFT OUTER JOIN (SELECT user_id as user_responsible_id, name FROM users) responsible ON responsible.user_responsible_id = tasks.responsible_id
@@ -276,7 +273,7 @@ class Task extends PModel
         }
 
         //
-        if (!$this->due_date || $this->due_date === " ") {
+        if (!$this->due_date) {
             $this->due_date = null;
         } else {
             $this->due_date = Helper::date($this->due_date, 'Y-m-d H:i');
@@ -300,6 +297,7 @@ class Task extends PModel
      */
     protected function afterSave()
     {
+        // Типа залогировали
         $this->saveHistory();
         parent::afterSave();
     }
@@ -345,10 +343,8 @@ class Task extends PModel
             if ($value != $prevValue) {
                 $changes[] = array('key' => $key, 'value' => $value, 'prevValue' => $prevValue);
             }
-
             TaskHistory::model()->create($this->task_id, $key, $value, $prevValue);
         }
-
         //
         Yii::app()->getModule('tasks')->notification->handleUpdate(Yii::app()->user->id, $this, $changes);
     }

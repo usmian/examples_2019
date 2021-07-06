@@ -1,5 +1,4 @@
 var salaryServices = (function() {
-
     var table,
         url = "/salary/api/getServicesReport";
 
@@ -121,7 +120,7 @@ var salaryServices = (function() {
         });
     }
 
-    
+
     /**
      * @return
      */
@@ -163,8 +162,5 @@ var salaryServices = (function() {
     });
 
     //
-    return {
-
-    };
-
+    return {};
 })();

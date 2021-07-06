@@ -23,12 +23,8 @@ $this->breadcrumb(array('Зарплаты' => '/salary', 'Настройка'));
                     array('type'=>'raw', 'name'=> 'name', 'value'=>'
                         (!Yii::app()->controller->checkAccess(\'update\')) ? $data->name:"<a href=\'".Yii::app()->createUrl("salary/default/settingsUpdate", array("id" => $data->user_id))."\'>".$data->name."</a>"
                         ',  'htmlOptions'=>array('width'=>'15%')),
-
                     array('type'=>'raw', 'name'=> 'roleTitles', 'htmlOptions'=>array('width'=>'15%'), 'filter'=>BsHtml::activeDropDownList($model, 'roles', Role::model()->getListInArray(true, true, true), array("prompt"=>"", 'class'=>'form-control'))),
-
                     array('type'=>'raw', 'name'=> 'professionTitles', 'htmlOptions'=>array('width'=>'15%'), 'filter'=>BsHtml::activeDropDownList($model, 'professions', Profession::model()->getList(true), array("prompt"=>"", 'class'=>'form-control'))),
-
-                    //array('type'=>'raw', 'name'=> 'date_created', 'value' => 'Helper::date($data->date_created, "d.m.Y H:i")', 'htmlOptions'=>array('width'=>'15%'), 'filter'=> Helper::rangeFilter($model, 'date_created') ),
                     array('type'=>'raw', 'name'=> 'salary', 'htmlOptions'=>array('width'=>'15%'),'value'=>'$data->getSalaryValue()', 'filter'=>''),
                 ),
                 'enableSorting'=>true,

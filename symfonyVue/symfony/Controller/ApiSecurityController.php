@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * UserController: Усиков
- * Date: 08.12.2018
- * Time: 23:10
- */
-
 namespace App\Controller;
 
 use App\Repository\RoleRepository;
@@ -39,11 +32,11 @@ class ApiSecurityController extends AbstractController
     /**
      * @Route("/api/init_app", name="init_app"))
      */
-    public function initAction(ModuleRepository $modulesRepo)
+    public function initAction(ModuleRepository $repository)
     {
         $user = $this->getUser();
 
-        $access = $modulesRepo->findWithRoles();
+        $access = $repository->findWithRoles();
         $grantedList = [];
         $userRoles = $user->getRoles();
         if (in_array('ROLE_ADMIN', $userRoles)) {
@@ -51,10 +44,10 @@ class ApiSecurityController extends AbstractController
                 array_push($grantedList, $a['name']);
             }
         } else {
-            foreach ($access as $a) {
-                $roles = $a['roles'];
-                foreach ($roles as $r) {
-                    if (in_array($r['name'], $userRoles)) {
+            foreach ($access as $module) {
+                $roles = $module['roles'];
+                foreach ($roles as $role) {
+                    if (in_array($role['name'], $userRoles)) {
                         array_push($grantedList, $a['name']);
                     }
                 }

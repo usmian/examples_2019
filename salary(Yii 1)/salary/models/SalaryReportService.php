@@ -97,9 +97,7 @@ class SalaryReportService extends PModel
     public function search()
     {
         // @todo Please modify the following code to remove attributes that should not be searched.
-
         $criteria = new CDbCriteria;
-
         $criteria->compare('salary_report_service_id', $this->salary_report_service_id);
         $criteria->compare('salary_report_id', $this->salary_report_id);
         $criteria->compare('user_salary_service_id', $this->user_salary_service_id);
@@ -126,7 +124,6 @@ class SalaryReportService extends PModel
      */
     public function getServicesByReportId($id, $createExcel = false)
     {
-
         $cr = new CDbCriteria();
         $cr->with = [
             'service',

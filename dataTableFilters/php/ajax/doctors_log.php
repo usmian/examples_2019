@@ -11,8 +11,6 @@ require_once INT_DIR . DS . 'DBconn.class.php';
 // -----------------------------------------------------------------------------
 //  connect to DB
 // -----------------------------------------------------------------------------
-
-
 use DataTableFilters\Classes\FilterService;
 use DataTableFilters\modules\dashboard\Log3SearchModel;
 use DataTableFilters\Classes\dto\DataTableObject;
@@ -27,8 +25,6 @@ try {
     // -----------------------------------------------------------------------------
     //  load router object
     // -----------------------------------------------------------------------------
-
-
     $dashboard = new Dashboard($registry);
     $registry->set('dashboard', $dashboard);
 
@@ -57,6 +53,5 @@ try {
     $sql->close();
 } catch (Exception $e) {
     $sql->close();
-
     error_log(date('d.m.Y H:i') . ' [error][FrontEnd Ajax File][getMkbList] ' . $e->getMessage() . "\n", 3, ERROR_LOG_FILE);
 }

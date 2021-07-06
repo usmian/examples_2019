@@ -64,8 +64,6 @@ $this->breadcrumb(array('Зарплаты' => '/salary', 'Выгрузка по 
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 

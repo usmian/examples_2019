@@ -22,5 +22,4 @@ class SalaryModule extends Module
             'manage' => 'Управление расчетами'
         ];
     }
-
 }

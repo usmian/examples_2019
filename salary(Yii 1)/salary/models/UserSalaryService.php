@@ -80,7 +80,6 @@ class UserSalaryService extends PModel
             'service_name' => 'Услуга',
             'service_code' => 'Артикул',
             'service_category' => 'Категория',
-
         );
     }
 

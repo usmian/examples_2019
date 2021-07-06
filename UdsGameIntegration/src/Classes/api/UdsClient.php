@@ -52,7 +52,6 @@ class UdsClient
         }
     }
 
-
     /**
      * Получить экземпляр клиента
      *
@@ -62,7 +61,7 @@ class UdsClient
      * @return UdsClient
      * @throws \Exception
      */
-    public static function getInstance($apiKey, $action, $params = null)
+    public static function getInstance($apiKey, $action, $params = null): UdsClient
     {
         return new static($apiKey, $action, $params);
     }

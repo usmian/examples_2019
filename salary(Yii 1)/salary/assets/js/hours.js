@@ -101,8 +101,8 @@ var salaryHours = (function() {
         if (table) {
             table.destroy();
         }
-        var d = {data: data, type: $('.type').val()};
-        var html = $(_.template($('#tpl-hours-table').html(), d)(d));
+        var templateData = {data: data, type: $('.type').val()};
+        var html = $(_.template($('#tpl-hours-table').html(), templateData)(templateData));
         $('.hours-wrap').html(html);
         table = forms.dataTable($('.hours'), {
             "pageLength": 1000,
@@ -116,7 +116,6 @@ var salaryHours = (function() {
             }
         });
     }
-
 
     /**
      *

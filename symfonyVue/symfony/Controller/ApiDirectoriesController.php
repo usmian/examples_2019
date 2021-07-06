@@ -35,68 +35,72 @@ class ApiDirectoriesController
         $this->normalizer = $normalizer;
         $this->router = $router;
     }
+
     /**
-     * @Route("/api/get_directories", name="ajax_get_directories"))
+     * Список
+     *
+     * @param TagCommonRepository $tagsRepository
+     * @Route("/api/get_directories", name="ajax_get_tags"))
+     * @return JsonResponse
      */
-    public function get_directories(TagCommonRepository $tagsRepository)
+    public function getTags(TagCommonRepository $tagsRepository)
     {
-        $goods = $tagsRepository->findByType(['isArchive' => 0, 'type' => 1]);
-        $regions = $tagsRepository->findByType(['isArchive' => 0, 'type' => 2]);
-        $types = $tagsRepository->findByType(['isArchive' => 0, 'type' => 3]);
-        /* $regions = $rRepo->findBy(['is_archive'=>0]);*/
+        $goods = $tagsRepository->findByType(['isArchive' => false, 'type' => TagCommon::TYPE_GOODS]);
+        $regions = $tagsRepository->findByType(['isArchive' => false, 'type' => TagCommon::TYPE_REGIONS]);
+        $types = $tagsRepository->findByType(['isArchive' => false, 'type' => TagCommon::TYPE_DELIVERY]);
 
-        $all = ['goods' => $goods,
+        $data = $this->serializer->serialize([
+            'goods' => $goods,
             'types' => $types,
-            'regions' => $regions];
-
-        $data = $this->serializer->serialize($all, 'json');
+            'regions' => $regions
+        ], 'json');
         return new JsonResponse($data, 200, [], true);
     }
 
     /**
-     * @Route("/api/add_directory", name="ajax_add_directory"))
+     * @Route("/api/add_tag", name="ajax_add_tag"))
      */
-    public function add_directory(Request $request)
+    public function addTag(Request $request)
     {
         $type = $request->request->get('type');
         $name = $request->request->get('value');
 
-        $directory = new TagCommon();
+        $newTag = new TagCommon();
 
-        $directory->setName($name);
-        $directory->setIsArchive(0);
-        $directory->setType($type);
-        $directory->setTypeName(TagCommon::$mapTypes[$type]);
+        // todo запихать в менеджер
+        $newTag->setName($name);
+        $newTag->setIsArchive(false);
+        $newTag->setType($type);
+        $newTag->setTypeName(TagCommon::$mapTypes[$type]);
 
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($directory);
+        $entityManager->persist($newTag);
         try {
             $entityManager->flush();
         } catch (Exception $e) {
             return $e->getMessage();
         }
 
-        $dir = [
+        $tag = [
             'type' => $type,
-            'directory' => $directory
+            'tag' => $newTag
         ];
 
-        $data = $this->serializer->serialize($dir, 'json');
+        $data = $this->serializer->serialize($tag, 'json');
         return new JsonResponse($data, 200, [], true);
     }
 
     /**
-     * @Route("/api/remove_directory", name="ajax_remove_directory"))
+     * @Route("/api/remove_tag", name="ajax_remove_tag"))
      */
-    public function remove_directory(Request $request,
-                                     TagCommonRepository $tagsRepository)
+    public function removeTag(Request $request, TagCommonRepository $tagsRepository)
     {
         $type = $request->request->get('type');
         $id = $request->request->get('id');
 
         $entityManager = $this->getDoctrine()->getManager();
         $directory = $tagsRepository->find($id);
-        $directory->setIsArchive(1);
+        $directory->setIsArchive(true);
 
         $entityManager->persist($directory);
 
@@ -110,10 +114,9 @@ class ApiDirectoriesController
     }
 
     /**
-     * @Route("/api/edit_directory", name="ajax_edit_directory"))
+     * @Route("/api/edit_tag", name="ajax_edit_tag"))
      */
-    public function edit_directory(Request $request,
-                                   TagCommonRepository $tagsRepository)
+    public function editTag(Request $request, TagCommonRepository $tagsRepository)
     {
         $type = $request->request->get('type');
         $id = $request->request->get('id');

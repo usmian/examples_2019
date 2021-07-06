@@ -7,7 +7,6 @@ var payReport = (function () {
     function init() {
         app.apiUrl = app.baseUrl + '/salary/api/';
         bind();
-
     }
     /**
      *
@@ -44,7 +43,6 @@ var payReport = (function () {
      * @param data
      */
     function showDetailing(data) {
-
         if (!data) {
             return false;
         }
@@ -63,7 +61,6 @@ var payReport = (function () {
      * @param id
      */
     function setComments(id) {
-
         try {
             comments.init({model: 'SalaryReport', id: '', controller: 'salary/api', parent: 'SalaryReport-'});
             comments.setId(id);

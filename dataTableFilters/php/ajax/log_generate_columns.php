@@ -19,11 +19,9 @@ require_once INT_DIR . DS . 'DBconn.class.php';
 // -----------------------------------------------------------------------------
 //  connect to DB
 // -----------------------------------------------------------------------------
-
-
 try {
     ## filters applied to data table
-    $aAssocData=$_POST;
+    $aAssocData = $_POST;
 
     $commonColumns = [
         ['title' => 'id', 'data' => 'id', 'visible' => false],
@@ -44,8 +42,10 @@ try {
             /**
              * @var $item \DateTime
              */
-            return ['title' => $item->format('d.m.Y'),
-                'data' => $item->format('Y-m-d')];
+            return [
+                'title' => $item->format('d.m.Y'),
+                'data' => $item->format('Y-m-d')
+            ];
         },
         iterator_to_array($period)
     );
@@ -57,6 +57,5 @@ try {
     echo json_encode($columns);
 
 } catch (Exception $e) {
-
     error_log(date('d.m.Y H:i') . ' [error][FrontEnd Ajax File][log3GenerateColumns] ' . $e->getMessage() . "\n", 3, ERROR_LOG_FILE);
 }

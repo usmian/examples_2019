@@ -2,7 +2,6 @@
 
 class DefaultController extends MController
 {
-
     /**
      * @throws CHttpException
      */
@@ -22,7 +21,6 @@ class DefaultController extends MController
             'model' => $model
         ));
     }
-
 
     /**
     /**
@@ -65,18 +63,15 @@ class DefaultController extends MController
         $types = Task::$tasksTypes;
 
         $performers = ($model->performer_type === Task::PERFORMER_TYPE_USER) ? $users : $roles;
-
         $history = ($action === 'update') ? TaskHistory::model()->getByTask($model->task_id) : null;
 
         if (isset($_POST['Task'])) {
             $model->attributes = $_POST['Task'];
             if ($model->validate()) {
                 $model->save();
-
                 if ($action === 'create') {
                     $this->module->notification->handleCreate($model);
                 }
-
                 $this->setSuccess(($action === 'create') ? 'Задача успешно добавлена': 'Изменения сохранены');
                 $this->redirect('/tasks');
             }
@@ -86,7 +81,6 @@ class DefaultController extends MController
         }
         //
         $this->render('form', array(
-
             'action' => $action,
             'id' => $id,
             'model' => $model,

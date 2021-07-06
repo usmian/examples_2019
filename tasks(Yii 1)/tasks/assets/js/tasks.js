@@ -1,5 +1,5 @@
 var tasks = (function () {
-
+    // общие штуки
     var users = ($('#users-data').length) ? JSON.parse($('#users-data').val()) : null,
         roles = ($('#roles-data').length) ? JSON.parse($('#roles-data').val()) : null;
 
@@ -39,7 +39,6 @@ var tasks = (function () {
             var dateTime = dueDate+' '+dueTime;
             inputDate.val(dateTime);
         });
-
     }
 
     /**

@@ -19,12 +19,11 @@ let uds = (function () {
 
         $(document)
             .on('click', '.uds-game-modal', function () {
-
                 visitID = $(this).attr('data-visit_id');
                 patientID = $(this).attr('data-patient_id');
-
+                //
                 document.getElementById('modal-form_uds').reset();
-
+                //
                 $('#submit-purchase').hide();
                 $('#recalulate-visit').hide();
                 $('#calculated-visit_uds').hide();
@@ -33,9 +32,8 @@ let uds = (function () {
                 $('#submit-udc-code').show();
                 $('#info_uds').html();
                 $('#calculated-visit_uds').val();
-
+                // Проверить не применялись ли уже скидки в этот визит
                 checkServicesAjax({iPatientFileID: visitID});
-
             });
 
 
@@ -48,9 +46,7 @@ let uds = (function () {
             });
 
         //после отправки кода
-        //
         function activateStepCode() {
-
             let rate = $('#modal_uds_rate'),
                 scores = $('#modal_uds_scores'),
                 recalculate = $('#recalulate-visit'),
@@ -81,7 +77,7 @@ let uds = (function () {
                 }
 
             });
-
+            // Проверка настроек скидочной компании
             switch (companyInfo.baseDiscountPolicy) {
                 case 'APPLY_DISCOUNT':
                     scores.removeAttr('disabled');
@@ -91,18 +87,17 @@ let uds = (function () {
                     $('#info_uds').html('<div>Невозможно применить скидку. В настройках компании - накопление баллов!</div>');
                     break;
             }
-
+            // форма пересчета суммы выизита
             recalculate.show();
 
             $(document)
                 .on('click', '#recalulate-visit', function () {
                     $('#submit-udc-code').hide();
-
                     $('#calculated-visit_uds').val(evaluateSumVisit(scores.val(), current));
                     $('#calculated-visit_uds').show();
                     purchase.show();
                 });
-
+            //
             $(document)
                 .on('click', '#submit-purchase', function (e) {
                     e.stopImmediatePropagation();
@@ -130,41 +125,38 @@ let uds = (function () {
             return (scores >= maxDiscount) ? maxDiscount : scores;
         }
 
-        //
+        // Нельзя дважды применять скидки, либо применять скидки для услуг, которые уже оплачены(даже если визит оплачен частично)
         function checkServicesAjax(data) {
-                apiUds.checkServices(data).success(function(response){
-                    if (!response) {
-                        alert('Уже есть скидки либо оплаченные услуги')
-                    } else {
-                        $('#modal-uds_sum').html(response.total);
-                        $('#modal_uds_visit_id').val(visitID);
-
-                        $('#uds-game-view').modal('show');
-                    }
-                }).error(function(){
-
-                });
+            apiUds.checkServices(data).success(function (response) {
+                if (!response) {
+                    alert('Уже есть скидки либо оплаченные услуги')
+                } else {
+                    $('#modal-uds_sum').html(response.total);
+                    $('#modal_uds_visit_id').val(visitID);
+                    $('#uds-game-view').modal('show');
+                }
+            }).error(function () {
+                alert('Произошла непредвиденная ошибка - попробуйте позже')
+            });
         }
 
         // отправляем уникальный код для получения информации о пациенте и заодно компании
         function sendCodeAjax(data) {
-            apiUds.sendCode(data).success(function(response){
-                if (response.patient != 'not_found') {
+            apiUds.sendCode(data).success(function (response) {
+                if (response.patient) {
                     patientInfo = response.patient;
                     companyInfo = response.company;
                     activateStepCode();
                 } else {
                     alert('Ошибка запроса к UDS. Попробуйте заново получить код');
                 }
-            }).error(function(){
-
+            }).error(function () {
+                alert('Произошла непредвиденная ошибка - попробуйте позже')
             });
         }
-
-
+        // закакзать скидки
         function purchaseAjax(data) {
             $('.loading2').show();
-
             apiUds.purchase(data).success(function (response) {
                 $('.loading2').hide();
                 $('#uds-game-view').modal('hide');
@@ -190,21 +182,24 @@ let uds = (function () {
                 services: response.services.services,
                 percent: response.percent
             });
-        };
+        }
     }
 
     // откатить транзакцию
     function revertServiceAjax(unique_key) {
-
-                jQuery.ajax({
-                    url: '/ajax/modules/dashboard/revert_uds_transaction.php',
-                    type: "POST",
-                    dataType: "json",
-                    data: {unique_key: unique_key},
-                    success: function (response) {
-                        console.log(response);
-                    }
-                });
+        jQuery.ajax({
+            url: '/ajax/modules/dashboard/revert_uds_transaction.php',
+            type: "POST",
+            dataType: "json",
+            data: {unique_key: unique_key},
+            success: function (response) {
+                alert('Успешно')
+            },
+            error: function (error) {
+                // todo писать в лог
+                alert('Произошла непредвиденная ошибка - попробуйте позже')
+            }
+        });
     }
 
     // профиль пациенты

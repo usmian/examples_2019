@@ -81,7 +81,6 @@ class DefaultController extends MController
         $this->settingsForm($id);
     }
 
-
     /**
      * @param $action
      * @param null $id

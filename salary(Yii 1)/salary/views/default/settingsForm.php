@@ -4,7 +4,6 @@
  * @var UserSalary $model
  * @var BsActiveForm $form
  */
-
 $title = 'Настройка зарплаты сотрудника ';
 $this->pageTitle = $title . '- Зарплаты - ' . Yii::app()->name;
 $this->breadcrumb(array(
@@ -12,11 +11,9 @@ $this->breadcrumb(array(
     'Настройка' => '/salary/default/settings',
     $title
 ));
-
 ?>
 
-<?
-$this->submenu(array(
+<? $this->submenu(array(
     array(
         'link' => '/salary/default/settings',
         'title' => 'Настройка ЗП', 'icon' => 'ti-angle-left'
@@ -28,7 +25,6 @@ $this->submenu(array(
 
 ));
 ?>
-
 
 <?php $form = $this->beginWidget('bootstrap.widgets.BsActiveForm', array(
     'id' => 'createUpdateSalary',
