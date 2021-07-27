@@ -7,7 +7,7 @@ use DataTableFilters\Classes\dto\ResultObject;
 use DataTableFilters\Classes\ISearch;
 use DataTableFilters\Classes\SearchModel;
 
-class Log3SearchModel extends SearchModel implements ISearch
+class LogSearchModel extends SearchModel implements ISearch
 {
     const REDIRECT_PERCENT = 0.05;
 
@@ -193,7 +193,8 @@ class Log3SearchModel extends SearchModel implements ISearch
             ];
             $dates = $this->mapDate($map);
 
-            //$newItem[$item->date] = $item->clinic_title;
+            // todo удалить после 27.04
+            // $newItem[$item->date] = $item->clinic_title;
             $immutable = (array)$item;
             $newData[] = array_merge($dates, $immutable);
         }
@@ -238,6 +239,7 @@ class Log3SearchModel extends SearchModel implements ISearch
      *
      * @param $aAssocData
      * @return string[]
+     * @throws \Exception
      */
     private function getDates($aAssocData): array
     {

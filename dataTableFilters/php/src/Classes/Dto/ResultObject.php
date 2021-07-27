@@ -6,7 +6,7 @@
 namespace DataTableFilters\Classes\Dto;
 
 /**
- * ДТО для резльта запроса с пагинацией
+ * ДТО для результа запроса с пагинацией
  *
  * Class ResultObject
  * @package DataTableFilters\Classes\Dto

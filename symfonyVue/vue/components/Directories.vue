@@ -363,16 +363,6 @@
         animation-delay: 1.04s;
     }
 
-    .loading2 {
-        background-color: #D2E0E6;
-        content: "";
-        position: absolute;
-        z-index: 1000000;
-        width: 100%;
-        height: 100%;
-        opacity: 0.4;
-    }
-
     @keyframes cube-loader {
         0%, 10% {
             transform: perspective(136px) rotateX(-180deg);
