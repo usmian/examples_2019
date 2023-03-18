@@ -1,9 +1,6 @@
 $(document).ready(function () {
-
     var start = new Date();
-
     var startDate = (start.getFullYear()) + "-" + ("0" + (start.getMonth() + 1)).slice(-2) + "-" + ("0" + (start.getDate() - 1)).slice(-2);
-
     var end = new Date();
     var endDate = (end.getFullYear()) + "-" + ("0" + (end.getMonth() + 1)).slice(-2) + "-" + ("0" + end.getDate()).slice(-2);
 
@@ -274,6 +271,5 @@ let doctorsLog = (function ($columns) {
                 initTable(columns);
             }
         };
-
     }
 );
