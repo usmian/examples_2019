@@ -22,9 +22,7 @@
                         :module="module"
                         :roles = "roles"
                 >
-
             </access-component>
-
             </el-main>
             <el-footer style="height: 10vh">Copyright Perfecta</el-footer>
         </el-container>
@@ -36,7 +34,6 @@
     import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
     import axios from 'axios';
-
     export default {
         components: {
             AccessComponent
@@ -224,5 +221,4 @@
             opacity: 0;
         }
     }
-
 </style>

@@ -1,6 +1,5 @@
 <template>
         <div class="form-group" style="margin-right:10px;max-width: 500px; display: inline-block"> <!--root component -->
-
             <b-input-group-prepend>
                 <b-form-input style="border-radius: 0px !important;"
                               type="text"
@@ -16,7 +15,6 @@
                           @click="editDirectory({id: directory.id, type: type, value: val})">
                         <i class="fa fa-edit" style="color: white"></i>
                     </b-btn>
-
                     <b-btn variant="danger"
                            style="border-radius: 0px !important;"
                            title="удалить"
@@ -32,7 +30,6 @@
 <script>
     import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
-
     export default {
         name: 'directoryInput',
         props: {
@@ -64,6 +61,4 @@
         }
     }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

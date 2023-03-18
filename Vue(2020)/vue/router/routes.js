@@ -99,6 +99,7 @@ const routes = [
         path: '/dashboard',
         component: Dashboard
     }
+    // TODO
     /* {
          path: '/requests',
          component: Requests
@@ -116,7 +117,6 @@ const routes = [
          component: E404
      }*/
 ];
-
 export const router = new VueRouter({
     routes,
     mode: 'history'

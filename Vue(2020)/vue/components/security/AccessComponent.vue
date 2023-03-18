@@ -3,14 +3,12 @@
         <div slot="header" class="clearfix">
             <span><strong>{{module.title}}</strong></span>
         </div>
-
             <checkbox-component v-for="(role, i) in roles"
                           :label="role.title"
                           :key="role.id"
                           :role = "role"
                           :module="module"
                           ></checkbox-component>
-
     </el-card>
 </template>
 
@@ -27,14 +25,13 @@
         }
     }
 </script>
-<style scoped>
 
+<style scoped>
     .box-card {
         width: 40%;
         display: inline-flex;
         margin: 10px;
     }
-    
     @keyframes slideIn {
         from {
             transform: rotateY(90deg);
@@ -43,7 +40,6 @@
             transform: rotateY(0deg);
         }
     }
-
     @keyframes slideOut {
         from {
             transform: rotateY(0deg);
@@ -52,5 +48,4 @@
             transform: rotateY(90deg);
         }
     }
-
 </style>

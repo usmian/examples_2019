@@ -1,12 +1,8 @@
 <template>
 <div id="app__main" >
-
     <div class="left main-sidebar">
-
         <div class="sidebar-inner">
-
             <div id="sidebar-menu">
-
                 <ul v-show="accessGranted">
                     <router-link v-for="(item, index) in menuList"
                                  :key="index"
@@ -22,17 +18,11 @@
                             <a><i :class="item.icon"></i></a>
                         </el-tooltip>
                     </router-link>
-
                 </ul>
-
                 <div class="clearfix"></div>
-
             </div>
-
             <div class="clearfix"></div>
-
         </div>
-
     </div>
     <div class="content-page">
         <div class="content">
@@ -49,12 +39,9 @@
 <script>
     import Call from './Call.vue';
     import {mapGetters} from 'vuex';
-
     export default {
         data() {
-            return {
-
-            }
+            return {}
         },
         components: {},
         computed: {
@@ -86,7 +73,4 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>
+<style scoped></style>

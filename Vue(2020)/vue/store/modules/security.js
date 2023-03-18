@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export default {
     namespaced: true,
     state: {
@@ -90,7 +89,6 @@ export default {
         }
     },
     mutations: {
-
         ['SET_INIT_DATA'](state, payload) {
             state.roles = payload.roles;
             state.basePath = payload.basePath;
@@ -109,11 +107,9 @@ export default {
                 icon: 'fa fa-bar-chart-o'
             }];
             for (let key in granted) {
-                let idx = state.items.findIndex(x = > x.name == granted[key]
-            );
+                let idx = state.items.findIndex(x = > x.name == granted[key]);
                 grantedMenu.push(state.items[idx]);
             }
-
             state.items = grantedMenu;
             state.accessGranted = true;
             state.pending = false;
@@ -125,8 +121,7 @@ export default {
         },
         ['SWITCHED_ROLE'](state, payload) {
             let module = state.accessList.findIndex(x = > x.id === payload.id
-        )
-            ;
+        );
             state.accessList[module] = payload;
             state.pending = false;
         },
@@ -143,11 +138,9 @@ export default {
             axios.get(path)
                 .then(response = > {
                 store.commit('INIT_APP', response.data)
-        }).
-            catch(e = > {
+            }).catch(e = > {
                 console.log(e)
-        })
-            ;
+            });
         },
         updateRole(store, payload) {
             store.commit('START_PENDING');
@@ -157,22 +150,18 @@ export default {
             })
                 .then(response = > {
                 store.commit('SWITCHED_ROLE', response.data)
-        }).
-            catch(e = > {
+            }).catch(e = > {
                 console.log(e)
-        })
-            ;
+            });
         },
         ['LOAD_ACCESS_MODULES'](store) {
             store.commit('START_PENDING');
             axios.get('/api/security/get_access_modules')
                 .then(response = > {
                 store.commit('INIT_ACCESS', response.data)
-        }).
-            catch(e = > {
+            }).catch(e = > {
                 console.log(e)
-        })
-            ;
+            });
         }
     }
 };

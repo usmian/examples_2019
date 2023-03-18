@@ -1,6 +1,5 @@
 <template>
         <div :class="loaderShow">
-
                 <div id="cube-loader" v-if="pending">
                     <div class="caption">
                         <h3>Подожите...</h3>
@@ -12,7 +11,6 @@
                         </div>
                     </div>
                 </div>
-
         <div class="sub-menu-wrap">
             <ul class="list-inline">
                 <li class="list-inline-item">
@@ -30,7 +28,6 @@
             <b-tab title="Товарные группы" active>
                 <div class="form-group" style="margin-top: 10px;max-width: 600px;display: inline-block">
                     <!--root component -->
-
                     <b-input-group-prepend>
                         <b-btn slot="prepend"
                                :style="{backgroundColor: isActiveGoods}"
@@ -45,7 +42,6 @@
                                       v-model.lazy="typeGoods"
                                       required
                                       placeholder="группа">
-
                         </b-form-input>
                         <b-input-group-append>
                             <b-btn variant="success"
@@ -57,9 +53,7 @@
                             </b-btn>
                         </b-input-group-append>
                     </b-input-group-prepend>
-
                 </div>
-
                 <div class="input__directory" v-if="directories.goods.length" style="max-height: 100vh;">
                     <DirectoryInput
                          v-for="(good,i) in computedListGoods"
@@ -72,11 +66,8 @@
                     </DirectoryInput>
                 </div>
             </b-tab>
-
-
             <b-tab title="Маршруты">
                 <div class="form-group" style="margin-top: 10px;max-width: 600px;display: inline-block">
-
                     <b-input-group-prepend>
                         <b-btn slot="prepend" class="fa fa-map"
                                :style="{backgroundColor:  isActiveRegions}"
@@ -101,11 +92,8 @@
                             </b-btn>
                         </b-input-group-append>
                     </b-input-group-prepend>
-
                 </div>
-
                 <div class="input__directory" v-if="directories.regions.length" style="max-height: 100vh; overflow: auto">
-
                     <DirectoryInput
                             v-for="(region,i) in computedListRegions"
                             :key="i"
@@ -115,14 +103,10 @@
                             @update:value="onChangeValue(i, $event, 2)"
                             :directory="region">
                     </DirectoryInput>
-
                 </div>
             </b-tab>
-
-
             <b-tab title="Условия поставок">
                 <div class="form-group" style="margin-top: 10px;max-width: 600px;display: inline-block">
-
                     <b-input-group-prepend>
                         <b-btn slot="prepend"
                                class="fa fa-plane"
@@ -148,12 +132,10 @@
                             </b-btn>
                         </b-input-group-append>
                     </b-input-group-prepend>
-
                 </div>
                 <div class="input__directory"
                      v-if="directories.types.length"
                      style="max-height: 100vh; overflow: auto">
-
                     <DirectoryInput
                             v-for="(type,i) in computedListTypes"
                             :key="i"
@@ -163,11 +145,8 @@
                             :directory="type">
                     </DirectoryInput>
                 </div>
-
             </b-tab>
-
         </b-tabs>
-
     </div>
 </template>
 
@@ -275,14 +254,12 @@
             isActiveDelivery(){
                 return this.nameDelivery ? '#4ebc00' : ''
             }
-
         },
         watch: {
             isAlertMessage(){
-                if(this.isAlertMessage==true){
+                if (this.isAlertMessage==true) {
                     this.showAlert();
                 }
-
            },
             isAddDirectory(){
                  this.typeDelivery ='';
@@ -294,7 +271,6 @@
 </script>
 
 <style scoped>
-
     /*  ---------------------------------------------------    */
     #cube-loader {
         align-items: center;
@@ -377,5 +353,4 @@
             opacity: 0;
         }
     }
-
 </style>

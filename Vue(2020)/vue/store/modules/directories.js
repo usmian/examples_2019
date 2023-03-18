@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export default {
     namespaced: true,
     state: {
@@ -27,7 +26,6 @@ export default {
         isAddDirectory(state){
             return state.isAddDirectory
         },
-
     },
     mutations: {
         ['CLEAR_DIRECTORIES'](state) {
@@ -56,10 +54,8 @@ export default {
                     break;
             }
             state.isAddDirectory = false;
-
         },
         ['REMOVE_DIRECTORY'](state, data) {
-
             state.pending = false;
             let directory;
 
@@ -77,7 +73,6 @@ export default {
                     state.directories.types.splice(directory,1);
                     break;
             }
-
         },
         ['EDIT_DIRECTORY'](state) {
             state.pending = false;
@@ -117,23 +112,19 @@ export default {
         },
         ['ADDING_DIRECTORY'](state) {
             state.isAddDirectory=true;
-
         },
     },
     actions: {
         ['LOAD_DIRECTORIES'](store) {
             store.commit('CLEAR_DIRECTORIES');
             store.commit('START_PENDING');
-
             axios.get('/api/get_directories')
                 .then(response => {
                     console.log(response);
-
                     store.commit('LOAD_DIRECTORIES', response)
                 }).catch(e => {
                 console.log(e)
             });
-
         },
         add(store, payload) {
             store.commit('START_PENDING');
@@ -149,12 +140,9 @@ export default {
                     store.commit('SET_MESSAGE_ADD_ERROR');
                 console.log(e)
             });
-
         },
         remove(store, payload) {
-
             store.commit('START_PENDING');
-
             axios.post('/api/remove_directory',{
                 type: payload.type,
                 id: payload.id
@@ -166,12 +154,9 @@ export default {
                     store.commit('SET_MESSAGE_REMOVE_ERROR');
                     console.log(e)
             });
-
         },
         edit(store, payload) {
-
             store.commit('START_PENDING');
-
             axios.post('/api/edit_directory',{
                 type: payload.type,
                 id: payload.id,
@@ -184,7 +169,6 @@ export default {
                 store.commit('SET_MESSAGE_EDIT_ERROR');
                 console.log(e)
             });
-
         },
         setIsAlertFalse(store){
             store.commit('END_ALERT');

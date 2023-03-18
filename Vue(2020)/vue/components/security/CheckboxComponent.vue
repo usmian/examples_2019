@@ -1,21 +1,17 @@
 <template>
-
         <el-checkbox  :label="label"
                       @change="switchRole({id: role.id, module_id: module.id})"
                       v-model="checked">
         </el-checkbox>
-
 </template>
 
 <script>
     import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
 
-
     export default {
         name: 'AccessComponent',
-        props: [ 'module', 'role' , 'label'],
-
+        props: ['module', 'role' , 'label'],
         data() {
             return {
                checked: null
@@ -39,6 +35,4 @@
         }
     }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

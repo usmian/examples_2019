@@ -11,7 +11,6 @@ import clients from './modules/clients';
 import directories from './modules/directories';
 import dashboard from './modules/dashboard';
 
-
 export const store = new Vuex.Store({
     modules: {
         security,

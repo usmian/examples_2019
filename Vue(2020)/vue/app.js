@@ -6,7 +6,6 @@ import locale from 'element-ui/lib/locale/lang/ru-RU'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 require('../css/app.scss');
 
 import App from './vue/components/App.vue';
@@ -22,7 +21,6 @@ import {router} from './vue/router/routes.js';
 moment.locale('ru');
 
 Vue.use(infiniteScroll);
-Vue.use(BootstrapVue);
 
 let basePath = window.location.protocol + '//' + window.location.host + '/';
 Object.defineProperty(Vue.prototype, '$moment', {value: moment});
